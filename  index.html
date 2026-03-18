@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elena Ryzhova — Learning Experience Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F2EC;
+  --white:#FAFAF7;
+  --ink:#1A1A17;
+  --muted:#7A7870;
+  --faint:#C0BDB6;
+  --forest:#2C4A3E;
+  --sage:#4A7264;
+  --sage-light:#EAF0ED;
+  --border:rgba(26,26,23,0.10);
+  --sans:'Plus Jakarta Sans',sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.w{max-width:820px;margin:0 auto;padding:0 32px}
+.page{display:none}
+.page.active{display:block}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;border-bottom:0.5px solid var(--border);
+  position:sticky;top:0;background:var(--cream);z-index:100;
+}
+.nav-name{font-size:13px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--ink);cursor:pointer;text-decoration:none;transition:color 0.2s}
+.nav-name:hover{color:var(--forest)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:11.5px;color:var(--muted);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;transition:color 0.2s}
+.nav-links a:hover{color:var(--forest)}
+.lang{display:flex;gap:5px;align-items:center;font-size:11.5px;letter-spacing:0.08em}
+.lang span{cursor:pointer;color:var(--muted);transition:color 0.2s;padding:2px 4px}
+.lang span.active{color:var(--forest);font-weight:500}
+.lang-sep{color:var(--faint);font-size:10px}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 176px;gap:48px;align-items:start;padding:56px 0 60px;border-bottom:0.5px solid var(--border)}
+.eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);margin-bottom:16px}
+.hero h1{font-family:var(--sans);font-size:36px;font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:5px}
+.hero h1 strong{font-weight:500}
+.hero-role{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--sage);margin-bottom:20px}
+.hero-desc{font-size:14.5px;line-height:1.78;color:var(--muted);margin-bottom:20px}
+.core{font-size:13.5px;color:var(--forest);font-style:italic;border-left:2px solid var(--forest);padding-left:12px;margin-top:4px;line-height:1.5;display:block}
+.photo-box{width:176px;height:220px;position:relative;overflow:hidden;flex-shrink:0}
+.photo-box img{width:100%;height:100%;object-fit:cover;object-position:center 10%}
+.photo-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--forest)}
+
+/* SECTION */
+.section{padding:48px 0;border-bottom:0.5px solid var(--border)}
+.section:last-child{border-bottom:none}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:28px}
+.sec-mark{color:var(--sage);font-size:13px;flex-shrink:0}
+.sec-title{font-family:var(--sans);font-size:20px;font-weight:400;letter-spacing:-0.01em;color:var(--ink)}
+.sec-sub{font-size:12px;color:var(--muted);letter-spacing:0.03em;margin-left:auto;white-space:nowrap}
+
+/* PROBLEMS */
+.problems{display:grid;grid-template-columns:repeat(3,1fr);border:0.5px solid var(--border)}
+.prob{padding:22px 20px;border-right:0.5px solid var(--border)}
+.prob:last-child{border-right:none}
+.prob-q{font-family:var(--serif);font-size:14.5px;font-style:italic;line-height:1.45;color:var(--forest);margin-bottom:10px}
+.prob-a{font-size:14px;line-height:1.7;color:var(--muted)}
+
+/* CASES LIST */
+.cases-list{border:0.5px solid var(--border)}
+.case-row{display:flex;align-items:stretch;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background 0.18s}
+.case-row:last-child{border-bottom:none}
+.case-row:hover{background:var(--white)}
+.case-n{font-size:11px;color:var(--sage);letter-spacing:0.08em;padding:18px 18px 18px 22px;min-width:48px;border-right:0.5px solid var(--border);display:flex;align-items:center;flex-shrink:0}
+.case-body{flex:1;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.case-name{font-size:15.5px;font-weight:400;color:var(--ink);letter-spacing:-0.01em;margin-bottom:3px}
+.case-hint{font-size:13px;color:var(--muted);font-style:italic}
+.case-type{font-size:11px;color:var(--faint);letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap}
+.case-arr{color:var(--faint);font-size:13px;margin-left:8px;transition:all 0.2s;flex-shrink:0}
+.case-row:hover .case-arr{color:var(--forest);transform:translateX(3px)}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(3,1fr);border:0.5px solid var(--border)}
+.services{display:grid;grid-template-columns:repeat(3,1fr);border:0.5px solid var(--border)}
+.srv{padding:22px 20px;border-right:0.5px solid var(--border)}
+.srv:last-child{border-right:none}
+.srv-n{font-size:11px;color:var(--sage);letter-spacing:0.1em;margin-bottom:12px}
+.srv-title{font-size:15px;font-weight:500;line-height:1.3;color:var(--ink);margin-bottom:10px}
+.srv-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.srv-meta{font-size:14px;color:var(--muted);line-height:1.7}
+.srv-row{margin-bottom:7px}
+.srv-lbl{font-weight:500;color:var(--ink);font-size:14px}
+.srv-val{color:var(--muted);font-size:14px}
+
+/* APPROACH */
+.approach-list{border-top:0.5px solid var(--border)}
+.appr{display:grid;grid-template-columns:196px 1fr;padding:15px 0;border-bottom:0.5px solid var(--border);gap:24px}
+.appr-label{font-size:14px;font-weight:500;color:var(--ink)}
+.appr-text{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* CONTACT */
+.contact-invite{font-size:14.5px;line-height:1.75;color:var(--muted);max-width:480px;margin-bottom:24px}
+.contact-icons{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.contact-icon-link{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:0.5px solid var(--border);color:var(--sage);text-decoration:none;transition:all 0.2s;background:var(--white)}
+.contact-icon-link:hover{color:var(--forest);border-color:var(--forest)}
+.contact-icon-link svg{display:block}
+.contact-note{font-size:12px;color:var(--muted);font-style:italic}
+
+/* FOOTER */
+footer{padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--faint);letter-spacing:0.03em;border-top:0.5px solid var(--border)}
+.footer-links{display:flex;gap:16px;align-items:center}
+.footer-link{font-size:11px;color:var(--faint);cursor:pointer;text-decoration:none;transition:color 0.2s}
+.footer-link:hover{color:var(--forest)}
+
+/* CASE PAGE */
+.case-page-wrap{padding:48px 0 64px}
+.bc{display:flex;align-items:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.bc-link{font-size:12px;color:var(--sage);cursor:pointer;text-decoration:none;transition:color 0.2s}
+.bc-link:hover{color:var(--forest)}
+.bc-sep{color:var(--faint);font-size:11px}
+.bc-cur{font-size:12px;color:var(--muted)}
+.case-header{margin-bottom:40px;padding-bottom:32px;border-bottom:0.5px solid var(--border)}
+.case-header h1{font-size:30px;font-weight:400;letter-spacing:-0.02em;color:var(--ink);margin-bottom:6px}
+.case-subtitle{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--muted);margin-bottom:20px}
+.case-challenge{border-left:2px solid var(--forest);padding:16px 20px;background:var(--white);margin-top:20px}
+.case-challenge p{font-size:13.5px;line-height:1.75;color:var(--ink)}
+.cs{padding:36px 0;border-bottom:0.5px solid var(--border)}
+.cs-head{display:flex;align-items:baseline;gap:10px;margin-bottom:24px}
+.cs-mark{color:var(--sage);font-size:13px}
+.cs-title{font-size:18px;font-weight:400;letter-spacing:-0.01em;color:var(--ink)}
+
+/* META GRID */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:0.5px solid var(--border)}
+.meta-cell{background:var(--cream);padding:14px 18px}
+.meta-label{font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:4px}
+.meta-value{font-size:14px;color:var(--ink);line-height:1.6}
+
+/* PROCESS */
+.process-list{border:0.5px solid var(--border)}
+.process-item{display:grid;grid-template-columns:44px 1fr;border-bottom:0.5px solid var(--border)}
+.process-item:last-child{border-bottom:none}
+.process-n{font-size:11px;color:var(--sage);letter-spacing:0.08em;padding:20px 0 20px 18px;border-right:0.5px solid var(--border);display:flex;align-items:flex-start}
+.process-body{padding:18px 20px}
+.process-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.process-text{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ACCORDION */
+.accordion{border:0.5px solid var(--border)}
+.acc-item{border-bottom:0.5px solid var(--border)}
+.acc-item:last-child{border-bottom:none}
+.acc-trigger{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;transition:background 0.15s;gap:12px}
+.acc-trigger:hover{background:var(--white)}
+.acc-label{font-size:13.5px;font-weight:500;color:var(--ink)}
+.acc-icon{width:18px;height:18px;flex-shrink:0;border:0.5px solid var(--faint);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:all 0.25s;line-height:1}
+.acc-item.open .acc-icon{background:var(--forest);border-color:var(--forest);color:white;transform:rotate(45deg)}
+.acc-body{display:none;padding:0 20px 18px}
+.acc-item.open .acc-body{display:block}
+.acc-body-inner{font-size:14px;color:var(--muted);line-height:1.72;padding-top:4px}
+
+/* FEEDBACK */
+.fb-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fb-card{padding:20px;border:0.5px solid var(--border);background:var(--white)}
+.fb-topic{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+.fb-quote{font-family:var(--serif);font-size:15px;font-style:italic;line-height:1.6;color:var(--ink)}
+.fb-author{font-size:11px;color:var(--muted);margin-top:10px}
+.fb-full{grid-column:1/-1}
+
+/* CASE BOTTOM NAV */
+.case-nav{display:flex;justify-content:space-between;align-items:center;padding-top:36px;gap:12px;flex-wrap:wrap}
+.nav-btn{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);cursor:pointer;padding:10px 16px;border:0.5px solid var(--border);background:var(--white);transition:all 0.2s;text-decoration:none}
+.nav-btn:hover{color:var(--forest);border-color:var(--forest)}
+
+/* LEGAL PAGES */
+.legal-body{font-size:13px;line-height:1.9;color:var(--muted);max-width:520px}
+.legal-body h3{font-size:13px;font-weight:500;color:var(--ink);margin:20px 0 6px}
+.legal-body h3:first-child{margin-top:0}
+.legal-body a{color:var(--forest);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="w">
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" onclick="goHome()">Elena Ryzhova</a>
+  <ul class="nav-links">
+    <li><a onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a></li>
+    <li><a onclick="goCases()"><span class="t" data-en="Cases" data-ru="Кейсы">Cases</span></a></li>
+    <li><a onclick="goSection('services')"><span class="t" data-en="Services" data-ru="Услуги">Services</span></a></li>
+    <li><a onclick="goSection('contact')"><span class="t" data-en="Contact" data-ru="Контакт">Contact</span></a></li>
+  </ul>
+  <div class="lang">
+    <span id="lang-en" class="active" onclick="setLang('en')">EN</span>
+    <span class="lang-sep">·</span>
+    <span id="lang-ru" onclick="setLang('ru')">RU</span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HOME
+══════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow t" data-en="Learning Experience Designer" data-ru="Методист образовательных программ">Learning Experience Designer</p>
+      <h1><span class="t" data-en="Hi, I'm" data-ru="Привет, я">Hi, I'm</span><br><strong class="t" data-en="Elena Ryzhova" data-ru="Елена Рыжова">Elena Ryzhova</strong></h1>
+      <p class="hero-role t" data-en="Designing learning that works." data-ru="Создаю архитектуру обучения, которая работает.">Designing learning that works.</p>
+      <p class="hero-desc t"
+        data-en="I design learning architecture that works — starting with real research, defining clear outcomes, and building the structure before anyone writes a single lesson.<br>9+ years of experience in systems thinking and implementation, now applied to learning design.<br>Professional retraining in Learning Experience Design (465h, School of Education)."
+        data-ru="Создаю архитектуру обучения, которая работает: соединяю потребности бизнеса, логику продукта и опыт студентов.<br>Специализируюсь на системном анализе и создании связного образовательного пути на основе доказательного подхода.<br>9+ лет опыта в системном мышлении и внедрении — теперь применяю в проектировании обучения.<br>Профессиональная переподготовка по Проектированию образовательного опыта (465 ч, School of Education).">
+        I design learning architecture that works — starting with real research, defining clear outcomes, and building the structure before anyone writes a single lesson.<br>9+ years of experience in systems thinking and implementation, now applied to learning design.<br>Professional retraining in Learning Experience Design (465h, School of Education).
+      </p>
+      <p class="core"><span class="t" data-en="✦ core strength: turning messy processes into organized learning systems" data-ru="✦ моя сильная сторона: превращать хаотичные процессы в организованные системы обучения">✦ core strength: turning messy processes into organized learning systems</span></p>
+    </div>
+    <div class="photo-box">
+      <img src="data:image/jpeg;base64,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" alt="Elena Ryzhova">
+      <div class="photo-bar"></div>
+    </div>
+  </section>
+
+  <!-- HOW I CAN HELP -->
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-mark">✦</span>
+      <h2 class="sec-title t" data-en="How I Can Help" data-ru="С чем я помогаю">How I Can Help</h2>
+      <span class="sec-sub t" data-en="I design learning for people" data-ru="Проектирую обучение для людей">I design learning for people</span>
+    </div>
+    <div class="problems">
+      <div class="prob">
+        <p class="prob-q t" data-en='"We have an idea, but don't know where to start"' data-ru='"Есть идея обучения, но не знаем с чего начать"'>"We have an idea, but don't know where to start"</p>
+        <p class="prob-a t" data-en="You have a goal — to teach people something important. But when you start designing, it feels overwhelming: too much material, unclear priorities, and no way to measure real learning. I help put everything in its place: what to study, in what order, and how to verify the results. So your program actually works, rather than just looking good on paper." data-ru="У вас есть цель — научить людей чему-то важному. Но когда садитесь проектировать программу, всё рассыпается: материала слишком много, непонятно что главное, как выстроить логику и как проверить, что люди действительно научились. Я помогаю разложить всё по полочкам: что изучать, в каком порядке, как проверять результат. Чтобы программа действительно работала, а не просто выглядела красиво на бумаге.">You have a goal — to teach people something important. But when you start designing, it feels overwhelming: too much material, unclear priorities, and no way to measure real learning. I help put everything in its place: what to study, in what order, and how to verify the results.</p>
+      </div>
+      <div class="prob">
+        <p class="prob-q t" data-en='"The program is long, and people drop out halfway through"' data-ru='"Программа длинная, люди бросают посередине"'>"The program is long, and people drop out halfway through"</p>
+        <p class="prob-a t" data-en="Engagement drops after a month or two. Participants either leave or just go through the motions. I help identify exactly where motivation is lost and build support into those key moments. I design with the reality of adult learners in mind: work, family, and fatigue are normal parts of the journey." data-ru="Материал рассчитан на несколько месяцев, но вовлечённость падает уже через месяц-два. Участники либо уходят, либо проходят курс формально. Я помогаю понять, где именно теряется мотивация, и встроить поддержку в ключевых местах. Проектирую с учётом того, что у взрослых есть работа, семья, усталость — и это нормально.">Engagement drops after a month or two. Participants either leave or just go through the motions. I help identify exactly where motivation is lost and build support into those key moments. I design with the reality of adult learners in mind: work, family, and fatigue are normal parts of the journey.</p>
+      </div>
+      <div class="prob">
+        <p class="prob-q t" data-en='"We have documentation, but people are lost in it"' data-ru='"Есть документация, но люди в ней теряются"'>"We have documentation, but people are lost in it"</p>
+        <p class="prob-a t" data-en="You've built a knowledge base, FAQs, or even an AI assistant. Yet employees still struggle or ask the same questions. I restructure and rewrite documentation so people find answers fast — clear, logical, and filled with real-world examples." data-ru="Вы создали базу знаний, инструкции, FAQ. Возможно даже встроили AI-помощника. Но сотрудники всё равно звонят, пишут одно и то же. Я структурирую и переписываю документацию так, чтобы люди находили ответы быстро — через поиск, AI-помощника или просто читая. Понятно, логично, с реальными примерами.">You've built a knowledge base, FAQs, or even an AI assistant. Yet employees still struggle or ask the same questions. I restructure and rewrite documentation so people find answers fast — clear, logical, and filled with real-world examples.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED CASES -->
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-mark">✦</span>
+      <h2 class="sec-title t" data-en="Selected Cases" data-ru="Ключевые проекты">Selected Cases</h2>
+      <span class="sec-sub t" data-en="Methodology. Research. Systems." data-ru="Методология. Исследование. Системы.">Methodology. Research. Systems.</span>
+    </div>
+    <div class="cases-list">
+      <div class="case-row" onclick="showCase('ns')">
+        <span class="case-n">01</span>
+        <div class="case-body">
+          <div>
+            <div class="case-name t" data-en="Natural Sciences Course Architecture" data-ru="Архитектура курса «Естествознание»">Natural Sciences Course Architecture</div>
+            <div class="case-hint t" data-en="Creative college · 72h · 6 modules · SJM" data-ru="Московский Креативный Техникум · 72ч · 6 модулей · SJM">Creative college · 72h · 6 modules · SJM</div>
+          </div>
+          <span class="case-type t" data-en="Programme Design" data-ru="Проектирование программы">Programme Design</span>
+          <span class="case-arr">→</span>
+        </div>
+      </div>
+      <div class="case-row" onclick="showCase('ind')">
+        <span class="case-n">02</span>
+        <div class="case-body">
+          <div>
+            <div class="case-name t" data-en="Induction Program Architecture" data-ru="Введение в креативные индустрии">Induction Program Architecture</div>
+            <div class="case-hint t" data-en="Creative hub · 48–60h · up to 200 students" data-ru="Московский Креативный Техникум · 48–60ч · до 200 студентов">Creative hub · 48–60h · up to 200 students</div>
+          </div>
+          <span class="case-type t" data-en="Onboarding Design" data-ru="Адаптация">Onboarding Design</span>
+          <span class="case-arr">→</span>
+        </div>
+      </div>
+      <div class="case-row" onclick="showCase('bl')">
+        <span class="case-n">03</span>
+        <div class="case-body">
+          <div>
+            <div class="case-name t" data-en="Brain vs. Language" data-ru="Мозг vs Язык: как преодолеть «плато»">Brain vs. Language</div>
+            <div class="case-hint t" data-en="Private educator · HCD research · 24+ scenarios" data-ru="Частный преподаватель · HCD-исследование · 24+ сценария">Private educator · HCD research · 24+ scenarios</div>
+          </div>
+          <span class="case-type t" data-en="Research & Design" data-ru="Исследование">Research & Design</span>
+          <span class="case-arr">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="sec-head">
+      <span class="sec-mark">✦</span>
+      <h2 class="sec-title t" data-en="Services" data-ru="Как мы можем сотрудничать">Services</h2>
+      <span class="sec-sub t" data-en="Remote · Any scale" data-ru="Удалённо · Любой масштаб">Remote · Any scale</span>
+    </div>
+    <div class="services">
+      <div class="srv">
+        <p class="srv-n">01.</p>
+        <h3 class="srv-title t" data-en="Learning Programme Architecture" data-ru="Проектирование учебных программ">Learning Programme Architecture</h3>
+        <p class="srv-desc t" data-en="Creating learning from scratch: from defining educational goals to assessment systems and reflection." data-ru="Создаю архитектуру обучения с нуля: от определения образовательных целей до системы оценивания и рефлексии.">Creating learning from scratch: from defining educational goals to assessment systems and reflection.</p>
+        <div class="srv-meta">
+          <p class="srv-row"><span class="srv-lbl t" data-en="Format: " data-ru="Формат: ">Format: </span><span class="srv-val t" data-en="Full-cycle bespoke design." data-ru="Индивидуальное проектирование полного цикла.">Full-cycle bespoke design.</span></p>
+          <p class="srv-row"><span class="srv-lbl t" data-en="Result: " data-ru="Результат: ">Result: </span><span class="srv-val t" data-en="A program any instructor can deliver — with clear outcomes, structured sessions, and built-in feedback loops. Ready to run, ready to scale." data-ru="Готовая методологическая рамка, сценарии занятий и инструменты фидбека, готовые к масштабированию.">A program any instructor can deliver — with clear outcomes, structured sessions, and built-in feedback loops. Ready to run, ready to scale.</span></p>
+        </div>
+      </div>
+      <div class="srv">
+        <p class="srv-n">02.</p>
+        <h3 class="srv-title t" data-en="Methodological Audit & Revision" data-ru="Методический аудит и ревизия">Methodological Audit & Revision</h3>
+        <p class="srv-desc t" data-en="Analyzing your program to pinpoint engagement gaps and proposing a system of improvements." data-ru="Анализирую программу, показываю точки потери мотивации и предлагаю систему улучшений.">Analyzing your program to pinpoint engagement gaps and proposing a system of improvements.</p>
+        <div class="srv-meta">
+          <p class="srv-row"><span class="srv-lbl t" data-en="Format: " data-ru="Формат: ">Format: </span><span class="srv-val t" data-en="A series of meetings + recommendation report." data-ru="Серия встреч + отчёт с рекомендациями.">A series of meetings + recommendation report.</span></p>
+          <p class="srv-row"><span class="srv-lbl t" data-en="Result: " data-ru="Результат: ">Result: </span><span class="srv-val t" data-en="Elimination of fragmented learning, increased completion rates and program cohesion." data-ru="Устранение «лоскутности» обучения, повышение доходимости и связности программы.">Elimination of fragmented learning, increased completion rates and program cohesion.</span></p>
+        </div>
+      </div>
+      <div class="srv">
+        <p class="srv-n">03.</p>
+        <h3 class="srv-title t" data-en="Learning Materials & Support" data-ru="Сопровождение и материалы">Learning Materials & Support</h3>
+        <p class="srv-desc t" data-en="Designing knowledge bases that people actually read: from step-by-step guides to systemic manuals. I translate 'complex' into 'human' — a skill honed during IT system rollouts (1C, ERP)." data-ru="Проектирую базу знаний, которую действительно читают: от пошаговых инструкций до системных гайдов. Умею переводить сложное на человеческий язык — этот навык я отточила на запуске ИТ-систем (1С, ERP).">Designing knowledge bases that people actually read: from step-by-step guides to systemic manuals. I translate 'complex' into 'human' — a skill honed during IT system rollouts (1C, ERP).</p>
+        <div class="srv-meta">
+          <p class="srv-row"><span class="srv-lbl t" data-en="Format: " data-ru="Формат: ">Format: </span><span class="srv-val t" data-en="Interactive knowledge bases, step-by-step instructions, script plans." data-ru="Интерактивные базы знаний, пошаговые инструкции, сценарные планы.">Interactive knowledge bases, step-by-step instructions, script plans.</span></p>
+          <p class="srv-row"><span class="srv-lbl t" data-en="Result: " data-ru="Результат: ">Result: </span><span class="srv-val t" data-en="Materials people actually use — fewer repeated questions, less load on support, processes that speak for themselves." data-ru="Нагрузка на техподдержку и кураторов снижается, а процессы становятся прозрачными.">Materials people actually use — fewer repeated questions, less load on support, processes that speak for themselves.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY APPROACH -->
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-mark">✦</span>
+      <h2 class="sec-title t" data-en="My Approach" data-ru="Мой подход">My Approach</h2>
+    </div>
+    <div class="approach-list">
+      <div class="appr">
+        <span class="appr-label t" data-en="People first, content second" data-ru="Сначала люди, потом контент">People first, content second</span>
+        <span class="appr-text t" data-en="I look at learning through the eyes of the students and create solutions that support their journey." data-ru="Я смотрю на обучение глазами учащихся и создаю решения, которые поддерживают их путь.">I look at learning through the eyes of the students and create solutions that support their journey.</span>
+      </div>
+      <div class="appr">
+        <span class="appr-label t" data-en="Evidence-based" data-ru="Опора на доказательства">Evidence-based</span>
+        <span class="appr-text t" data-en="I use methods that are proven to work in practice, not just those that are &ldquo;trendy.&rdquo;" data-ru="Использую методы, которые работают на практике, а не просто кажутся модными.">I use methods that are proven to work in practice, not just those that are "trendy."</span>
+      </div>
+      <div class="appr">
+        <span class="appr-label t" data-en="Respect for how people learn" data-ru="Уважение к особенностям взрослого обучения">Respect for how people learn</span>
+        <span class="appr-text t" data-en="I build programs that align with real-world experience and motivation." data-ru="Строю материалы и программы так, чтобы они ложились на реальный опыт и мотивацию учащихся.">I build programs that align with real-world experience and motivation.</span>
+      </div>
+      <div class="appr">
+        <span class="appr-label t" data-en="Growth without pressure" data-ru="Без лишнего давления">Growth without pressure</span>
+        <span class="appr-text t" data-en="Learning should foster quiet confidence and steady growth, not stress." data-ru="Обучение должно помогать расти спокойно и уверенно, а не вызывать стресс.">Learning should foster quiet confidence and steady growth, not stress.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="sec-head">
+      <span class="sec-mark">✦</span>
+      <h2 class="sec-title t" data-en="Contact" data-ru="Контакт">Contact</h2>
+    </div>
+    <p class="contact-invite t"
+      data-en="Ready to discuss your learning project or explore collaboration opportunities? Write to me — I do my best to respond within 48 hours."
+      data-ru="Готовы обсудить образовательный проект или возможности для сотрудничества? Напишите мне — постараюсь ответить в течение 48 часов.">
+      Ready to discuss your learning project or explore collaboration opportunities? Write to me — I do my best to respond within 48 hours.
+    </p>
+    <div class="contact-icons">
+      <a href="mailto:lenaryzh@gmail.com" class="contact-icon-link" title="lenaryzh@gmail.com">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      </a>
+      <a href="http://www.linkedin.com/in/lenaryzh" target="_blank" class="contact-icon-link" title="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-3a2 2 0 0 1 4 0v3M12 10v7"/></svg>
+      </a>
+    </div>
+    <p class="contact-note t" data-en="✦ CV available upon request" data-ru="✦ резюме по запросу">✦ CV available upon request</p>
+  </section>
+
+  <footer>
+    <span>Elena Ryzhova — <span class="t" data-en="Learning Experience Designer" data-ru="Методист образовательных программ">Learning Experience Designer</span></span>
+    <div class="footer-links">
+      <span style="color:var(--faint);font-size:11px">Bingen am Rhein</span>
+      <a class="footer-link" onclick="showPage('imprint')">Imprint</a>
+      <a class="footer-link" onclick="showPage('privacy')">Privacy Policy</a>
+    </div>
+  </footer>
+
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════
+     CASES INDEX
+══════════════════════════════════ -->
+<div id="page-cases" class="page">
+  <div class="case-page-wrap">
+    <div class="bc">
+      <a class="bc-link" onclick="goHome()"><span class="t" data-en="← Home" data-ru="← Главная">← Home</span></a>
+    </div>
+    <div class="sec-head">
+      <span class="sec-mark">✦</span>
+      <h2 class="sec-title t" data-en="All Cases" data-ru="Все проекты">All Cases</h2>
+      <span class="sec-sub t" data-en="Methodology. Research. Systems." data-ru="Методология. Исследование. Системы.">Methodology. Research. Systems.</span>
+    </div>
+    <div class="cases-list">
+      <div class="case-row" onclick="showCase('ns')">
+        <span class="case-n">01</span>
+        <div class="case-body">
+          <div>
+            <div class="case-name t" data-en="Natural Sciences Course Architecture" data-ru="Архитектура курса «Естествознание»">Natural Sciences Course Architecture</div>
+            <div class="case-hint t" data-en="Creative college · 72h · 6 modules · SJM" data-ru="Московский Креативный Техникум · 72ч · 6 модулей · SJM">Creative college · 72h · 6 modules · SJM</div>
+          </div>
+          <span class="case-type t" data-en="Programme Design" data-ru="Проектирование программы">Programme Design</span>
+          <span class="case-arr">→</span>
+        </div>
+      </div>
+      <div class="case-row" onclick="showCase('ind')">
+        <span class="case-n">02</span>
+        <div class="case-body">
+          <div>
+            <div class="case-name t" data-en="Induction Program Architecture" data-ru="Введение в креативные индустрии">Induction Program Architecture</div>
+            <div class="case-hint t" data-en="Creative hub · 48–60h · up to 200 students" data-ru="Московский Креативный Техникум · 48–60ч · до 200 студентов">Creative hub · 48–60h · up to 200 students</div>
+          </div>
+          <span class="case-type t" data-en="Onboarding Design" data-ru="Адаптация">Onboarding Design</span>
+          <span class="case-arr">→</span>
+        </div>
+      </div>
+      <div class="case-row" onclick="showCase('bl')">
+        <span class="case-n">03</span>
+        <div class="case-body">
+          <div>
+            <div class="case-name t" data-en="Brain vs. Language" data-ru="Мозг vs Язык: как преодолеть «плато»">Brain vs. Language</div>
+            <div class="case-hint t" data-en="Private educator · HCD research · 24+ scenarios" data-ru="Частный преподаватель · HCD-исследование · 24+ сценария">Private educator · HCD research · 24+ scenarios</div>
+          </div>
+          <span class="case-type t" data-en="Research & Design" data-ru="Исследование">Research & Design</span>
+          <span class="case-arr">→</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px"><a class="nav-btn" onclick="goHome()">← <span class="t" data-en="Back to Home" data-ru="На главную">Back to Home</span></a></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     CASE 01: NATURAL SCIENCES
+══════════════════════════════════ -->
+<div id="page-ns" class="page">
+  <div class="case-page-wrap">
+    <div class="bc">
+      <a class="bc-link" onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a>
+      <span class="bc-sep">→</span>
+      <a class="bc-link" onclick="goCases()"><span class="t" data-en="Cases" data-ru="Проекты">Cases</span></a>
+      <span class="bc-sep">→</span>
+      <span class="bc-cur t" data-en="Natural Sciences" data-ru="Естествознание">Natural Sciences</span>
+    </div>
+    <div class="case-header">
+      <h1 class="t" data-en="Natural Sciences Course Architecture" data-ru="Архитектура курса «Естествознание»">Natural Sciences Course Architecture</h1>
+      <p class="case-subtitle t" data-en="Strategic Design of a Year-Long Course for Creative Specializations" data-ru="Проектирование годового курса для студентов креативных специальностей">Strategic Design of a Year-Long Course for Creative Specializations</p>
+      <div class="case-challenge">
+        <p class="t"
+          data-en="<b>The Challenge:</b> A working physics teacher launches a Natural Sciences course at a creative college — alone, with no curriculum, building lessons the week before class. Students see the subject as irrelevant to their future. The task: design the full architecture of a year-long program on an existing concept — and invent the methodological core that would make it work."
+          data-ru="<b>Задача проекта:</b> Спроектировать курс естествознания с нуля на основе существующей концепции и создать методологическое ядро, которое заставит её работать. Учитель физики ведёт курс в одиночку, без готовой программы, собирая уроки за неделю до занятий. Студенты воспринимают предмет как непрофильный. Ключевым вызовом стало превратить «обязательное непрофильное» в профессиональный инструмент креативщика.">
+          <b>The Challenge:</b> A working physics teacher launches a Natural Sciences course at a creative college — alone, with no curriculum, building lessons the week before class. Students see the subject as irrelevant to their future. The task: design the full architecture of a year-long program on an existing concept — and invent the methodological core that would make it work.
+        </p>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Context & Task" data-ru="Контекст и задача">Context & Task</h2></div>
+      <div class="meta-grid">
+        <div class="meta-cell"><div class="meta-label t" data-en="Client" data-ru="Клиент">Client</div><div class="meta-value t" data-en="Creative Industries & Technology Educational Hub" data-ru="Московский Креативный Техникум (МКТ)">Creative Industries & Technology Educational Hub</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="Project Type" data-ru="Тип проекта">Project Type</div><div class="meta-value t" data-en="Learning Experience Design / Strategic Educational Audit" data-ru="Learning Experience Design / Проектирование курса полного цикла">Learning Experience Design / Strategic Educational Audit</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="The Brief" data-ru="Формулировка задачи">The Brief</div><div class="meta-value t" data-en="Design a 72-hour Natural Sciences course for first-year students in film, design, marketing, and fashion — and solve the problem of low engagement with a subject perceived as non-professional." data-ru="Спроектировать годовой курс естествознания (72 часа) для первокурсников креативных направлений и решить проблему низкой вовлечённости в непрофильный предмет.">Design a 72-hour Natural Sciences course for first-year students in film, design, marketing, and fashion — and solve the problem of low engagement with a subject perceived as non-professional.</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="My Role" data-ru="Моя роль">My Role</div><div class="meta-value t" data-en="Research data analysis, development of the methodological framework, and Student Journey Map (SJM)." data-ru="Исследование и анализ потребностей · Разработка концепции курса · Проектирование модели занятия (цикл Колба) · «Научный паспорт» — авторская разработка с нуля.">Research data analysis, development of the methodological framework, and Student Journey Map (SJM).</div></div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Design Process" data-ru="Этапы проектирования">Design Process</h2></div>
+      <div class="process-list">
+        <div class="process-item">
+          <span class="process-n">01</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Research & Insight" data-ru="Исследование и проектирование целей">Research & Insight</div>
+            <div class="process-text t" data-en="Defined the learner persona (16–17 years old) and identified engagement barriers through a stakeholder interview and student survey. 62.5% of respondents couldn't connect the subject to their future profession — the central design premise." data-ru="Определение портрета студента (16–17 лет) и барьеров вовлечённости через интервью с заказчиком и анкетирование студентов. 62,5% респондентов не видели связи предмета со своей будущей профессией — это стало центральной предпосылкой для проектирования.">Defined the learner persona (16–17 years old) and identified engagement barriers through a stakeholder interview and student survey. 62.5% of respondents couldn't connect the subject to their future profession — the central design premise.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <span class="process-n">02</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Competency Mapping" data-ru="Разработка образовательных результатов">Competency Mapping</div>
+            <div class="process-text t" data-en='Translated a broad concept ("perception through sensory systems") into three structured learning outcomes using the ABCD framework. Built full constructive alignment: outcomes → assessment → activities — working upstream of content production.' data-ru='Перевод широкой концепции («восприятие через сенсорные системы») в три структурированных образовательных результата по фреймворку ABCD. Выстроена конструктивная согласованность: результаты → оценивание → активности — до начала разработки содержания.'>Translated a broad concept ("perception through sensory systems") into three structured learning outcomes using the ABCD framework. Built full constructive alignment: outcomes → assessment → activities — working upstream of content production.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <span class="process-n">03</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Architecture" data-ru="Проектирование архитектуры обучения">Architecture</div>
+            <div class="process-text t" data-en="Six-module program organized by sensory system, methodological framework selection, assessment system design, and Student Journey Map." data-ru="Шестимодульная программа по сенсорным системам, выбор методологических фреймворков, разработка системы оценивания и Student Journey Map.">Six-module program organized by sensory system, methodological framework selection, assessment system design, and Student Journey Map.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Project Outcomes" data-ru="Результаты проекта">Project Outcomes</h2></div>
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="The Concept: Laboratory of Evidence-Based Creativity" data-ru="Концепция: Лаборатория доказательного креатива">The Concept: Laboratory of Evidence-Based Creativity</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="A professional lab where students learn to conduct a scientific audit of any creative product through the lens of human perception. The graduate isn't a student who passed a test — they're an early-career expert with a portfolio artifact that demonstrates analytical thinking in the language of science." data-ru="Профессиональная лаборатория, где студенты учатся проводить научный аудит любого креативного продукта через призму человеческого восприятия. Выпускник курса — не студент, сдавший зачёт, а начинающий специалист с артефактом в портфолио, который демонстрирует умение мыслить аналитически на языке науки.">A professional lab where students learn to conduct a scientific audit of any creative product through the lens of human perception. The graduate isn't a student who passed a test — they're an early-career expert with a portfolio artifact that demonstrates analytical thinking in the language of science.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="The Through-Project: Scientific Passport of a Creative Product" data-ru="Сквозной проект: Научный паспорт креативного продукта">The Through-Project: Scientific Passport of a Creative Product</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Developed from scratch as the methodological core — the through-line that holds the entire year together. Each student selects a real creative product from their industry and builds a structured scientific analysis across three sensory systems — one mandatory (vision) + two chosen based on the product type. Each section follows the full scientific method cycle. The passport exports to PDF and enters the student's professional portfolio.<br><br><b>Assessment:</b> 40% ongoing (passport sections as module gates) + 60% final defense-pitch (5 minutes per student, four criteria: clarity, evidence, practicality, professional language)." data-ru="Разработан с нуля как методологическое ядро — сквозная нить, которая удерживает весь годовой курс вместе. Каждый студент выбирает реальный креативный продукт из своей индустрии и строит структурированный научный анализ по трём сенсорным системам — одна обязательная (зрение) + две на выбор в зависимости от типа продукта. Каждый раздел следует полному циклу научного метода. Паспорт экспортируется в PDF и входит в профессиональное портфолио студента.<br><br><b>Оценивание:</b> 40% текущий контроль (разделы паспорта как допуск к следующему модулю) + 60% итоговая защита-питч (5 минут на студента, четыре критерия: ясность, доказательность, практичность, профессиональный язык).">Developed from scratch as the methodological core — the through-line that holds the entire year together. Each student selects a real creative product from their industry and builds a structured scientific analysis across three sensory systems — one mandatory (vision) + two chosen based on the product type. Each section follows the full scientific method cycle. The passport exports to PDF and enters the student's professional portfolio.<br><br><b>Assessment:</b> 40% ongoing (passport sections as module gates) + 60% final defense-pitch (5 minutes per student, four criteria: clarity, evidence, practicality, professional language).</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Educational Framework & Kolb's Cycle" data-ru="Образовательная рамка и цикл Колба">Educational Framework & Kolb's Cycle</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="<b>Logical Alignment:</b> Learning Outcomes → Kolb's Cycle → Assessment System.<br><b>Kolb's Cycle:</b> each lesson moves from hands-on experiment to reflection to theory to application — 80% practice, no abstract lecturing.<br><b>Scaffolding:</b> ready-made templates and checklists replace blank-page tasks — lowering the entry barrier without lowering the standard." data-ru="<b>Логическая связка:</b> Образовательные результаты → Цикл Колба → Система оценивания.<br><b>Цикл Колба:</b> каждое занятие движется от практического эксперимента к рефлексии, теории и применению — 80% практики, никакого абстрактного лекционного формата.<br><b>Скаффолдинг:</b> готовые шаблоны и чек-листы заменяют задания с чистого листа — снижают порог входа, не снижая стандарт."><b>Logical Alignment:</b> Learning Outcomes → Kolb's Cycle → Assessment System.<br><b>Kolb's Cycle:</b> each lesson moves from hands-on experiment to reflection to theory to application — 80% practice, no abstract lecturing.<br><b>Scaffolding:</b> ready-made templates and checklists replace blank-page tasks — lowering the entry barrier without lowering the standard.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Student Journey Map (SJM)" data-ru="Карта студенческого пути (SJM)">Student Journey Map (SJM)</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Mapped the full emotional arc across six modules — identified motivation dips, cognitive overload peaks, and post-peak engagement risks. Integrated supporting mechanics at precise critical points." data-ru="Визуализация эмоциональной динамики студента на протяжении шести модулей — выделены точки спада мотивации, пики когнитивной нагрузки и риски потери вовлечённости. В критические точки встроены поддерживающие механики.">Mapped the full emotional arc across six modules — identified motivation dips, cognitive overload peaks, and post-peak engagement risks. Integrated supporting mechanics at precise critical points.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Designed for Constraint: 1 instructor, 53 students" data-ru="Проектирование под ограничения: 1 преподаватель, 53 студента">Designed for Constraint: 1 instructor, 53 students</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Designed for this from the start: self-check challenges, compact pitch format (5 min/student), modular template system. 80% of all work happens in class. The program is ready to be handed to any instructor without additional development." data-ru="Спроектировано с учётом этого с самого начала: челленджи с самопроверкой, компактный формат защиты (5 минут на студента), модульная система шаблонов. 80% работы — в аудитории. Программа готова к передаче любому преподавателю без дополнительной разработки.">Designed for this from the start: self-check challenges, compact pitch format (5 min/student), modular template system. 80% of all work happens in class. The program is ready to be handed to any instructor without additional development.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Client Feedback" data-ru="Отзыв клиента">Client Feedback</h2></div>
+      <div class="fb-grid">
+        <div class="fb-card"><div class="fb-topic t" data-en="On instrumentation and depth" data-ru="Об инструментальности и глубине">On instrumentation and depth</div><div class="fb-quote t" data-en='"A very deep, very instrumental approach. Every slide is a model or a framework — business goal flows into program goal, program goal into learning outcomes. I wish I could work like that."' data-ru="«Очень глубокий, очень инструментальный подход. Бизнес-цель переходит в цель программы, цель — в образовательные результаты. Мне бы так жить.»">"A very deep, very instrumental approach. Every slide is a model or a framework — business goal flows into program goal, program goal into learning outcomes. I wish I could work like that."</div></div>
+        <div class="fb-card"><div class="fb-topic t" data-en="On the core invention" data-ru="О сквозном проекте">On the core invention</div><div class="fb-quote t" data-en='"You turned this toward working with real things and gave students a tool — this passport. I think students are going to love it."' data-ru="«Здорово, что повернули это в сторону работы с живыми реальными штуками и дали студентам инструмент — паспорт. Мне кажется, студентам будет классно.»">"You turned this toward working with real things and gave students a tool — this passport. I think students are going to love it."</div></div>
+        <div class="fb-card"><div class="fb-topic t" data-en="On understanding the audience" data-ru="О понимании аудитории">On understanding the audience</div><div class="fb-quote t" data-en="&ldquo;You heard both the student and the teacher. I even learned something from this research — things I didn't know, or knew but forgot — for example, about how overloaded they are and how important practical applicability is for them.&rdquo;" data-ru="«Вы услышали и студента, и преподавателя. Я даже узнал что-то из этого исследования, того, о чём не знал или знал, но забывал — например, про то, что они перегружены, про то, что для них на самом деле очень важна применимость и вот эта практическая польза.»">"You heard both the student and the teacher. I even learned something from this research — things I didn't know, or knew but forgot — for example, about how overloaded they are and how important practical applicability is for them."</div></div>
+        <div class="fb-card"><div class="fb-topic t" data-en="On metrics and measurability" data-ru="О метриках и измеримости">On metrics and measurability</div><div class="fb-quote t" data-en="&ldquo;Well-formulated goals. Good learning outcomes. It's great that there are numbers — they always make it easier to evaluate.&rdquo;" data-ru="«Круто сформулированные цели. Хорошие ОР. Здорово, что есть указание на цифрах — с ними всегда проще оценивать.»">"Well-formulated goals. Good learning outcomes. It's great that there are numbers — they always make it easier to evaluate."</div></div>
+        <div class="fb-card fb-full">
+          <div class="fb-topic t" data-en="On the result" data-ru="О результате">On the result</div>
+          <div class="fb-quote t" data-en="&ldquo;Ideas that existed as fragments transformed into a coherent system. The ability to finally see it as a whole — that's a real achievement.&rdquo;" data-ru="«Идеи, которые существовали разрозненно, преобразовались в целостную систему. Возможность наконец посмотреть на это целиком — большая удача.»">"Ideas that existed as fragments transformed into a coherent system. The ability to finally see it as a whole — that's a real achievement."</div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="case-nav">
+      <a class="nav-btn" onclick="goCases()">← <span class="t" data-en="All Cases" data-ru="Все проекты">All Cases</span></a>
+      <a class="nav-btn" onclick="showCase('ind')"><span class="t" data-en="Next Case →" data-ru="Следующий проект →">Next Case →</span></a>
+      <a class="nav-btn" onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a>
+    </div>
+  </div>
+</div><!-- /page-ns -->
+
+
+<!-- ══════════════════════════════════
+     CASE 02: INDUCTION
+══════════════════════════════════ -->
+<div id="page-ind" class="page">
+  <div class="case-page-wrap">
+    <div class="bc">
+      <a class="bc-link" onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a>
+      <span class="bc-sep">→</span>
+      <a class="bc-link" onclick="goCases()"><span class="t" data-en="Cases" data-ru="Проекты">Cases</span></a>
+      <span class="bc-sep">→</span>
+      <span class="bc-cur t" data-en="Induction Program" data-ru="Введение в креативные индустрии">Induction Program</span>
+    </div>
+    <div class="case-header">
+      <h1 class="t" data-en="Induction Program Architecture" data-ru="Введение в креативные индустрии">Induction Program Architecture</h1>
+      <p class="case-subtitle t" data-en="Strategic Redesign of the First-Year Student Experience" data-ru="Проектирование адаптационного модуля для Московского Креативного Техникума">Strategic Redesign of the First-Year Student Experience</p>
+      <div class="case-challenge">
+        <p class="t"
+          data-en="<b>The Challenge:</b> To audit and transform a series of fragmented lectures into a cohesive learning journey. The core solution was a methodological framework designed as a practical intensive to replace traditional frontal teaching. The key challenge was to eliminate the 'patchwork' effect and create a system that scales for groups of up to 200 people, while maintaining deep engagement and personal reflection for every student."
+          data-ru="<b>Задача проекта:</b> Ревизия вводного модуля и трансформация разрозненных лекций в связный образовательный путь. В основе — методический фреймворк в формате практического интенсива, который заменил фронтальное обучение. Ключевым вызовом стало создание системы, которая устраняет эффект «лоскутного одеяла» и бесшовно масштабируется на группы до 200 человек, сохраняя при этом глубину вовлечённости и личную рефлексию каждого студента.">
+          <b>The Challenge:</b> To audit and transform a series of fragmented lectures into a cohesive learning journey. The core solution was a methodological framework designed as a practical intensive to replace traditional frontal teaching. The key challenge was to eliminate the 'patchwork' effect and create a system that scales for groups of up to 200 people, while maintaining deep engagement and personal reflection for every student.
+        </p>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Context & Task" data-ru="Контекст и задача">Context & Task</h2></div>
+      <div class="meta-grid">
+        <div class="meta-cell"><div class="meta-label t" data-en="Client" data-ru="Клиент">Client</div><div class="meta-value t" data-en="Creative Industries & Technology Educational Hub" data-ru="Московский Креативный Техникум (МКТ)">Creative Industries & Technology Educational Hub</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="Project Type" data-ru="Тип проекта">Project Type</div><div class="meta-value">Learning Experience Design (LXD) / Strategic Educational Audit</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="The Brief" data-ru="Формулировка задачи">The Brief</div><div class="meta-value t" data-en="Design a 48–60 hour induction module for freshmen in creative specializations to solve the issue of low engagement and lack of professional context." data-ru="Спроектировать вводный адаптационный модуль (48–60 часов) для первокурсников креативных направлений, решив проблему низкой вовлечённости прошлых лет.">Design a 48–60 hour induction module for freshmen in creative specializations to solve the issue of low engagement and lack of professional context.</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="My Role" data-ru="Моя роль">My Role</div><div class="meta-value t" data-en="Research data analysis (interviews, surveys, desk research), development of the methodological framework, and Student Journey Map (SJM)." data-ru="Анализ данных исследования (интервью, анкетирование, desk research), разработка методологической рамки и проектирование карты студенческого опыта (SJM).">Research data analysis (interviews, surveys, desk research), development of the methodological framework, and Student Journey Map (SJM).</div></div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Design Process" data-ru="Этапы проектирования">Design Process</h2></div>
+      <div class="process-list">
+        <div class="process-item">
+          <span class="process-n">01</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Research & Insight" data-ru="Исследование и проектирование целей">Research & Insight</div>
+            <div class="process-text t" data-en="Defined the learner persona (15+ years old) and identified engagement barriers through a stakeholder interview and student survey." data-ru="Определение портрета первокурсника (15+ лет) и барьеров вовлечённости на основе интервью с заказчиком и анкетирования студентов.">Defined the learner persona (15+ years old) and identified engagement barriers through a stakeholder interview and student survey.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <span class="process-n">02</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Competency Mapping" data-ru="Разработка образовательных результатов">Competency Mapping</div>
+            <div class="process-text t" data-en='Translated broad requests (e.g., "teaching creativity," "adapting to college") into concrete learning outcomes and specific professional competencies.' data-ru='Перевод абстрактных запросов («научить креативности», «адаптировать к колледжу») в конкретные образовательные результаты и компетенции.'>Translated broad requests (e.g., "teaching creativity," "adapting to college") into concrete learning outcomes and specific professional competencies.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <span class="process-n">03</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Architecture" data-ru="Проектирование архитектуры обучения">Architecture</div>
+            <div class="process-text t" data-en="Student Journey Map, selection of methodological frameworks, and design of a non-graded assessment system." data-ru="Student Journey Map, выбор методологических фреймворков, разработка системы оценивания без баллов.">Student Journey Map, selection of methodological frameworks, and design of a non-graded assessment system.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Project Outcomes" data-ru="Результаты проекта">Project Outcomes</h2></div>
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="The Concept: Introduction to Creative Industries" data-ru="Концепция: Введение в Креативные Индустрии">The Concept: Introduction to Creative Industries</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="An intensive induction program built on the values of interdisciplinarity, proactivity, and rapid immersion in industry context. Three key priorities: <b>Socialization</b> — creating a safe environment for students to experiment and take their first creative risks. <b>Agency</b> — a shift from passive listening to active design through Learning by Doing. <b>Industry Context</b> — immersion into professional creative workflows and tools from week one." data-ru="Интенсив «Введение в Креативные Индустрии»: программа адаптации, построенная на ценностях междисциплинарности, проактивности и быстрого погружения в индустриальный контекст. Три ключевых приоритета: <b>Социализация</b> — создание безопасной среды для пробы пера. <b>Субъектность</b> — переход от пассивного слушания к активному проектированию (learning by doing). <b>Индустриальный контекст</b> — использование реального инструментария креативных индустрий с первой недели.">An intensive induction program built on the values of interdisciplinarity, proactivity, and rapid immersion in industry context. Three key priorities: <b>Socialization</b> — creating a safe environment for students to experiment and take their first creative risks. <b>Agency</b> — a shift from passive listening to active design through Learning by Doing. <b>Industry Context</b> — immersion into professional creative workflows and tools from week one.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Educational Framework & Kolb's Cycle" data-ru="Образовательная рамка и цикл Колба">Educational Framework & Kolb's Cycle</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="<b>Logical Alignment:</b> Learning Outcomes → Kolb's Cycle Mechanics → Assessment System.<br><b>Kolb's Cycle:</b> the program is designed for 70% practice (Immediate Experience → Reflective Observation → Abstract Conceptualization → Active Experimentation).<br><b>Assessment & Reflection:</b> academic essays replaced with visual sketchbooks and a qualitative feedback system to foster personal agency." data-ru="<b>Логическая связка:</b> Результаты обучения → Механики цикла Колба → Система оценивания.<br><b>Цикл Колба:</b> проектирование программы через 70% практики (непосредственный опыт → рефлексивное наблюдение → концептуализация → эксперимент).<br><b>Оценивание и рефлексия:</b> замена академических эссе на визуальные скетчбуки и систему качественного фидбека."><b>Logical Alignment:</b> Learning Outcomes → Kolb's Cycle Mechanics → Assessment System.<br><b>Kolb's Cycle:</b> the program is designed for 70% practice (Immediate Experience → Reflective Observation → Abstract Conceptualization → Active Experimentation).<br><b>Assessment & Reflection:</b> academic essays replaced with visual sketchbooks and a qualitative feedback system to foster personal agency.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Student Journey Map & Critical Points" data-ru="SJM и критические точки">Student Journey Map & Critical Points</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Visualization of the educational track with optimized cognitive load distribution. Identified critical points (burnout risks, post-peak motivation drops) and integrated supporting mechanics and group rituals into these specific moments." data-ru="Визуализация образовательного трека с распределением когнитивной нагрузки. Выделены критические точки (риски перегрузки, точки спада мотивации после пиков) и внедрены в них поддерживающие механики и групповые ритуалы.">Visualization of the educational track with optimized cognitive load distribution. Identified critical points (burnout risks, post-peak motivation drops) and integrated supporting mechanics and group rituals into these specific moments.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Program Architecture: 4 Creative Tracks + Common Zones" data-ru="Архитектура программы: 4 трека + общие зоны">Program Architecture: 4 Creative Tracks + Common Zones</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="A modular structure uniting four creative tracks. Designed 'Common Zones' for cross-disciplinary teamwork, where students from different specialties create a single product — simulating a real-world production environment. Scales seamlessly to 200 students." data-ru="Модульная структура, объединяющая 4 творческих трека. Спроектированы «общие зоны» для командной работы, где студенты разных специальностей создают единый продукт, имитируя работу в реальном продакшне. Бесшовно масштабируется до 200 человек.">A modular structure uniting four creative tracks. Designed 'Common Zones' for cross-disciplinary teamwork, where students from different specialties create a single product — simulating a real-world production environment. Scales seamlessly to 200 students.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Methodological Foundation" data-ru="Методологический фундамент">Methodological Foundation</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Developed a detailed module script and Student Journey Map (SJM), which serve as the core blueprint for the program. This ensures the integrity and logic of the learning experience are maintained, regardless of the specific teaching staff involved in delivery." data-ru="Разработаны подробный сценарий модуля и SJM, которые служат опорными материалами для реализации программы. Это позволяет сохранять логику образовательного опыта вне зависимости от состава преподавателей.">Developed a detailed module script and Student Journey Map (SJM), which serve as the core blueprint for the program. This ensures the integrity and logic of the learning experience are maintained, regardless of the specific teaching staff involved in delivery.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Client Feedback" data-ru="Отзыв клиента">Client Feedback</h2></div>
+      <div class="fb-grid">
+        <div class="fb-card"><div class="fb-topic t" data-en="On depth and uncovering meaning" data-ru="О глубине и выявлении смыслов">On depth and uncovering meaning</div><div class="fb-quote t" data-en="&ldquo;I was struck by your approach, which is rooted in a deep understanding of the client's challenges — perhaps even deeper than our own. You were able to uncover hidden objectives through thorough and insightful interviewing.&rdquo;" data-ru="«Меня впечатлил подход, основанный на глубоком понимании проблем заказчика — возможно, более глубоком, чем у самого заказчика. Вы смогли выявить скрытые цели с помощью глубинного и очень хорошего интервью.»">"I was struck by your approach, which is rooted in a deep understanding of the client's challenges — perhaps even deeper than our own. You were able to uncover hidden objectives through thorough and insightful interviewing."</div></div>
+        <div class="fb-card"><div class="fb-topic t" data-en="On systems and architecture" data-ru="О системности и архитектуре">On systems and architecture</div><div class="fb-quote t" data-en='"It is clear that this is the design of specific learning outcomes and educational goals, not just an experience. We will be moving in this direction following your lead."' data-ru="«Видно, что это проектирование не просто опыта, а конкретных образовательных результатов и учебных целей. Мы в МКТ будем двигаться в эту сторону вслед за вами.»">"It is clear that this is the design of specific learning outcomes and educational goals, not just an experience. We will be moving in this direction following your lead."</div></div>
+        <div class="fb-card"><div class="fb-topic t" data-en="On research expertise" data-ru="Об исследовательской экспертизе">On research expertise</div><div class="fb-quote t" data-en="&ldquo;A special thank you for conducting the research that we hadn't managed ourselves. You surveyed the students, identified their needs — and all of this is clearly reflected in the final products you proposed.&rdquo;" data-ru="«Отдельное спасибо, что провели исследование, которое мы не провели сами. Вы опросили студентов, выделили их потребности — и всё это видно в итоговых продуктах, которые вы предлагаете.»">"A special thank you for conducting the research that we hadn't managed ourselves. You surveyed the students, identified their needs — and all of this is clearly reflected in the final products you proposed."</div></div>
+        <div class="fb-card"><div class="fb-topic t" data-en="On metrics and measurability" data-ru="О метриках и измеримости">On metrics and measurability</div><div class="fb-quote t" data-en="&ldquo;Providing the program with clear assessment tools — I see them, they are intuitive. Checklists, success markers, both quantitative and qualitative. To me, it's a 100% perfect execution.&rdquo;" data-ru="«Обеспечить программу понятными инструментами оценки — я их вижу, они понятные. Чек-листы, маркеры успеха. Нравится, что есть и количественные, и качественные. Мне кажется, идеальное выполнение, 100%.»">"Providing the program with clear assessment tools — I see them, they are intuitive. Checklists, success markers, both quantitative and qualitative. To me, it's a 100% perfect execution."</div></div>
+        <div class="fb-card fb-full">
+          <div class="fb-topic t" data-en="On the quality of solutions" data-ru="О качестве решений">On the quality of solutions</div>
+          <div class="fb-quote t" data-en='"The solution is well-thought-out, profound, and fully meets the brief. The work is magnificent."' data-ru="«Решение продуманное, глубокое и полностью отвечающее запросу. Работа великолепная.»">"The solution is well-thought-out, profound, and fully meets the brief. The work is magnificent."</div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="case-nav">
+      <a class="nav-btn" onclick="goCases()">← <span class="t" data-en="All Cases" data-ru="Все проекты">All Cases</span></a>
+      <a class="nav-btn" onclick="showCase('bl')"><span class="t" data-en="Next Case →" data-ru="Следующий проект →">Next Case →</span></a>
+      <a class="nav-btn" onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a>
+    </div>
+  </div>
+</div><!-- /page-ind -->
+
+
+<!-- ══════════════════════════════════
+     CASE 03: BRAIN VS LANGUAGE
+══════════════════════════════════ -->
+<div id="page-bl" class="page">
+  <div class="case-page-wrap">
+    <div class="bc">
+      <a class="bc-link" onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a>
+      <span class="bc-sep">→</span>
+      <a class="bc-link" onclick="goCases()"><span class="t" data-en="Cases" data-ru="Проекты">Cases</span></a>
+      <span class="bc-sep">→</span>
+      <span class="bc-cur t" data-en="Brain vs. Language" data-ru="Мозг vs Язык">Brain vs. Language</span>
+    </div>
+    <div class="case-header">
+      <h1 class="t" data-en="Brain vs. Language" data-ru="Мозг vs Язык: как преодолеть «плато»">Brain vs. Language</h1>
+      <p class="case-subtitle t" data-en="Research project for a private language educator. Based on Human-Centered Design and the neurophysiology of learning." data-ru="Исследовательский проект по заказу частного преподавателя. В основе — Human-Centered Design и нейрофизиология обучения.">Research project for a private language educator. Based on Human-Centered Design and the neurophysiology of learning.</p>
+      <div class="case-challenge">
+        <p class="t"
+          data-en="<b>The Challenge:</b> To audit classical language learning approaches and transform the process from a 'struggle with oneself' into a system that works in harmony with brain neurophysiology. Instead of simply increasing hours or apps — a methodological framework based on Human-Centered Design principles. The key challenge was to identify the biological causes of learner self-sabotage and create tools to overcome the plateau effect and cognitive overload, while maintaining high progress speed and the student's personal resources."
+          data-ru="<b>Задача проекта:</b> Ревизия классических подходов к изучению языков и трансформация процесса обучения из борьбы с собой в систему, работающую в согласии с нейрофизиологией мозга. Вместо привычного наращивания часов и приложений — методологический фреймворк, основанный на принципах Human-Centered Design. Ключевым вызовом стало выявление биологических причин «образовательного саботажа» и создание инструментов, которые позволяют преодолеть эффект плато и когнитивную перегрузку, сохраняя высокую скорость прогресса и личный ресурс студента.">
+          <b>The Challenge:</b> To audit classical language learning approaches and transform the process from a 'struggle with oneself' into a system that works in harmony with brain neurophysiology. Instead of simply increasing hours or apps — a methodological framework based on Human-Centered Design principles. The key challenge was to identify the biological causes of learner self-sabotage and create tools to overcome the plateau effect and cognitive overload, while maintaining high progress speed and the student's personal resources.
+        </p>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Context & Task" data-ru="Контекст и задача">Context & Task</h2></div>
+      <div class="meta-grid">
+        <div class="meta-cell"><div class="meta-label t" data-en="Client" data-ru="Клиент">Client</div><div class="meta-value t" data-en="Private language educator" data-ru="Частный преподаватель иностранного языка">Private language educator</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="Project Type" data-ru="Тип проекта">Project Type</div><div class="meta-value">Educational Research, HCD & Evidence-based Design</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="The Brief" data-ru="Формулировка задачи">The Brief</div><div class="meta-value t" data-en='Rebuild adult learning methodology by eliminating the "plateau effect" and learner resistance through the integration of neurophysiology and Human-Centered Design.' data-ru='Пересобрать методику обучения взрослых, устранив «эффект плато» и сопротивление учеников через внедрение принципов нейрофизиологии и Human-Centered Design.'>Rebuild adult learning methodology by eliminating the "plateau effect" and learner resistance through the integration of neurophysiology and Human-Centered Design.</div></div>
+        <div class="meta-cell"><div class="meta-label t" data-en="My Role" data-ru="Моя роль">My Role</div><div class="meta-value t" data-en="User experience research (24+ scenarios), identifying and reframing learning barriers, designing the methodological framework, and translating expert knowledge on neurobiology into practical learning materials." data-ru="Исследование пользовательского опыта (24+ сценария), выявление и рефрейминг барьеров обучения, проектирование методологического фреймворка и упаковка экспертных знаний о нейробиологии обучения в систему практических материалов.">User experience research (24+ scenarios), identifying and reframing learning barriers, designing the methodological framework, and translating expert knowledge on neurobiology into practical learning materials.</div></div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Design Process" data-ru="Этапы проектирования">Design Process</h2></div>
+      <div class="process-list">
+        <div class="process-item">
+          <span class="process-n">01</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Research & Reframing" data-ru="Исследование и проектирование целей">Research & Reframing</div>
+            <div class="process-text t" data-en="Qualitative HCD research: 24+ learner scenarios (immigrants, working adults, multilingual learners), synthesised into 3 problem clusters. Reframed the core problem from emotional ('laziness,' 'lack of talent') to biological: hippocampal overload, adaptation stress." data-ru="Качественное HCD-исследование: 24+ сценария учащихся, синтез в 3 кластера проблем. Переформулирование проблемы из эмоциональной плоскости («лень», «отсутствие способностей») в биологическую: перенасыщение гиппокампа, адаптационный стресс.">Qualitative HCD research: 24+ learner scenarios (immigrants, working adults, multilingual learners), synthesised into 3 problem clusters. Reframed the core problem from emotional ('laziness,' 'lack of talent') to biological: hippocampal overload, adaptation stress.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <span class="process-n">02</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Outcome Mapping" data-ru="Разработка образовательных результатов">Outcome Mapping</div>
+            <div class="process-text t" data-en="Replacing abstract 'language proficiency' with measurable cognitive tasks: eliminating language interference, building direct neural pathways, activating vocabulary through context — not memorisation." data-ru="Замена абстрактного «владения языком» на измеримые когнитивные задачи: устранение языковой интерференции и перевод экспертных данных о мозге в конкретные техники активации словаря через алгоритмы управления памятью.">Replacing abstract 'language proficiency' with measurable cognitive tasks: eliminating language interference, building direct neural pathways, activating vocabulary through context — not memorisation.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <span class="process-n">03</span>
+          <div class="process-body">
+            <div class="process-title t" data-en="Learning Architecture" data-ru="Проектирование архитектуры обучения">Learning Architecture</div>
+            <div class="process-text t" data-en="Designed a learning track around how the brain consolidates: Sensory Anchoring mechanics, sleep-based memory cycles, cognitive load distribution across sessions." data-ru="Создание системы «обучения в соавторстве с мозгом»: разработка механик Sensory Anchoring (сенсорные якоря) и проектирование трека с учётом циклов консолидации памяти во сне.">Designed a learning track around how the brain consolidates: Sensory Anchoring mechanics, sleep-based memory cycles, cognitive load distribution across sessions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Project Outcomes" data-ru="Результаты проекта">Project Outcomes</h2></div>
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Key Methodology Tools" data-ru="Три ключевых инструмента">Key Methodology Tools</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="<b>Communication Gap Analysis:</b> Content filtering — focusing exclusively on the structures the learner needs for their real-world 'day-after-tomorrow' scenarios.<br><br><b>Sensory Anchors:</b> Implementation of a system using exclusive scents and visual triggers to accelerate information retrieval from long-term memory.<br><br><b>Reverse Translation:</b> A mechanic designed to build direct neural pathways in the target language, bypassing the habit of mental translation from one's native language." data-ru="<b>Анализ коммуникативных разрывов:</b> Фильтрация контента — изучение только тех структур, которые необходимы ученику в его реальных сценариях «завтрашнего дня».<br><br><b>Сенсорные якоря:</b> Внедрение системы эксклюзивных запахов и визуальных триггеров для ускорения извлечения информации из долгосрочной памяти.<br><br><b>Обратный перевод:</b> Механика создания прямых нейронных путей в целевом языке, минуя привычку переводить в уме с родного языка."><b>Communication Gap Analysis:</b> Content filtering — focusing exclusively on the structures the learner needs for their real-world 'day-after-tomorrow' scenarios.<br><br><b>Sensory Anchors:</b> Implementation of a system using exclusive scents and visual triggers to accelerate information retrieval from long-term memory.<br><br><b>Reverse Translation:</b> A mechanic designed to build direct neural pathways in the target language, bypassing the habit of mental translation from one's native language.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Learning as a Cycle" data-ru="Архитектура программы: занятие как цикл">Learning as a Cycle</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Input Impulse → Living the Experience → Consolidation via Sensory Anchors → Overnight Sleep Consolidation.<br><br>A methodology based on balancing cognitive load and emotional engagement — a fundamental shift from 'struggling with oneself' to a system of micro-achievements, supported by the precise balance of cognitive load and neural activity." data-ru="Входной импульс → Проживание опыта → Закрепление через sensory anchors → Ночная консолидация во сне.<br><br>Методология, построенная на балансе когнитивной нагрузки и эмоциональной вовлечённости — переход от «борьбы с собой» к системе микро-достижений с помощью процесса настройки нейронных связей.">Input Impulse → Living the Experience → Consolidation via Sensory Anchors → Overnight Sleep Consolidation.<br><br>A methodology based on balancing cognitive load and emotional engagement — a fundamental shift from 'struggling with oneself' to a system of micro-achievements, supported by the precise balance of cognitive load and neural activity.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Educational Content: Science into Practice" data-ru="Образовательный контент: наука в практику">Educational Content: Science into Practice</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="Developed a system of long-read guides to accompany the video course, providing learning variability. Complex scientific data on brain function (receptors, the Papez circuit, dopamine cycles) translated into practical, accessible instructions. This ensured content accessibility for students with different perception patterns and reinforced video lectures through deep reading." data-ru="Разработка системы лонгридов сопровождения видеокурса для вариативности обучения. Сложные научные данные о работе мозга (рецепторы, круг Папеца, дофаминовые циклы) переведены в прикладные инструкции. Это обеспечило доступность контента для студентов с разными паттернами восприятия и позволило закрепить материал видеолекций через глубокое чтение.">Developed a system of long-read guides to accompany the video course, providing learning variability. Complex scientific data on brain function (receptors, the Papez circuit, dopamine cycles) translated into practical, accessible instructions. This ensured content accessibility for students with different perception patterns and reinforced video lectures through deep reading.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-trigger" onclick="toggleAcc(this)">
+            <span class="acc-label t" data-en="Methodological Toolkit for the Educator" data-ru="Методический фундамент для преподавателя">Methodological Toolkit for the Educator</span>
+            <div class="acc-icon">+</div>
+          </div>
+          <div class="acc-body"><div class="acc-body-inner t" data-en="A practical toolkit: a guide for managing learner 'resistance,' templates for Communication Gap interviews, and algorithms for designing homework that avoids cognitive rejection. Plus a <b>Cognitive Load Map</b> — visualization of student load that allows the educator to dynamically adjust material difficulty based on the learner's stress and fatigue levels on any given day." data-ru="Пул инструментов для преподавателя: гайд по работе с «сопротивлением» ученика, шаблоны для проведения Communication Gap интервью и алгоритмы проектирования домашних заданий, которые не вызывают отторжения. Плюс <b>карта когнитивной нагрузки</b> — визуализация нагрузки студента, которая позволяет преподавателю динамично менять сложность материала в зависимости от уровня стресса и усталости ученика в конкретный день.">A practical toolkit: a guide for managing learner 'resistance,' templates for Communication Gap interviews, and algorithms for designing homework that avoids cognitive rejection. Plus a <b>Cognitive Load Map</b> — visualization of student load that allows the educator to dynamically adjust material difficulty based on the learner's stress and fatigue levels on any given day.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-head"><span class="cs-mark">✦</span><h2 class="cs-title t" data-en="Impact" data-ru="Отзывы">Impact</h2></div>
+      <div class="fb-grid">
+        <div class="fb-card fb-full">
+          <div class="fb-topic t" data-en="Professional validation" data-ru="Профессиональная оценка">Professional validation</div>
+          <div class="fb-quote t" data-en="&ldquo;I'm an English teacher, learning German and French. I've been looking for such detailed and visual information on the neurophysiology of learning for a long time.&rdquo;" data-ru="«Я учитель английского, учу немецкий и французский. Давно искала такую детальную и визуальную информацию о нейрофизиологии обучения.»">"I'm an English teacher, learning German and French. I've been looking for such detailed and visual information on the neurophysiology of learning for a long time."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-nav">
+      <a class="nav-btn" onclick="goCases()">← <span class="t" data-en="All Cases" data-ru="Все проекты">All Cases</span></a>
+      <a class="nav-btn" onclick="showCase('ns')"><span class="t" data-en="← First Case" data-ru="← Первый проект">← First Case</span></a>
+      <a class="nav-btn" onclick="goHome()"><span class="t" data-en="Home" data-ru="Главная">Home</span></a>
+    </div>
+  </div>
+</div><!-- /page-bl -->
+
+
+<!-- ══════════════════════════════════
+     IMPRINT
+══════════════════════════════════ -->
+<div id="page-imprint" class="page">
+  <div class="case-page-wrap">
+    <div class="bc"><a class="bc-link" onclick="goHome()">← <span class="t" data-en="Home" data-ru="Главная">Home</span></a></div>
+    <div class="sec-head"><span class="sec-mark">✦</span><h2 class="sec-title">Imprint</h2></div>
+    <div class="legal-body">
+      <h3>Angaben gemäß § 5 TMG</h3>
+      <p>Elena Ryzhova<br>Bingen am Rhein, Rheinland-Pfalz, Deutschland<br><a href="mailto:lenaryzh@gmail.com">lenaryzh@gmail.com</a></p>
+      <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+      <p>Elena Ryzhova, Bingen am Rhein</p>
+      <h3>Berufsbezeichnung</h3>
+      <p>Learning Experience Designer. Die Tätigkeit unterliegt keinen spezifischen berufsrechtlichen Regelungen.</p>
+      <h3>Haftungsausschluss</h3>
+      <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann keine Gewähr übernommen werden. Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+      <h3>Streitbeilegung</h3>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>. Ich bin nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </div>
+    <div style="margin-top:32px"><a class="nav-btn" onclick="goHome()">← <span class="t" data-en="Back to Home" data-ru="На главную">Back to Home</span></a></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PRIVACY POLICY
+══════════════════════════════════ -->
+<div id="page-privacy" class="page">
+  <div class="case-page-wrap">
+    <div class="bc"><a class="bc-link" onclick="goHome()">← <span class="t" data-en="Home" data-ru="Главная">Home</span></a></div>
+    <div class="sec-head"><span class="sec-mark">✦</span><h2 class="sec-title">Privacy Policy / Datenschutzerklärung</h2></div>
+    <div class="legal-body">
+      <h3>1. Verantwortlicher</h3>
+      <p>Elena Ryzhova, Bingen am Rhein · <a href="mailto:lenaryzh@gmail.com">lenaryzh@gmail.com</a></p>
+      <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
+      <p>Diese Website erhebt keine personenbezogenen Daten automatisch. Es werden keine Cookies gesetzt, keine Tracking-Tools eingesetzt und keine Nutzerdaten gespeichert. Wenn Sie mir per E-Mail schreiben, werden Ihre Daten ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+      <h3>3. Hosting</h3>
+      <p>Diese Website wird als statische HTML-Datei bereitgestellt. Es werden keine Server-Logs mit personenbezogenen Daten erstellt.</p>
+      <h3>4. Externe Links</h3>
+      <p>Diese Website enthält Links zu LinkedIn. Für die Datenschutzpraktiken dieser Plattform ist deren eigene Datenschutzerklärung maßgeblich.</p>
+      <h3>5. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Kontakt: <a href="mailto:lenaryzh@gmail.com">lenaryzh@gmail.com</a></p>
+      <h3>6. Beschwerderecht</h3>
+      <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz.</p>
+    </div>
+    <div style="margin-top:32px"><a class="nav-btn" onclick="goHome()">← <span class="t" data-en="Back to Home" data-ru="На главную">Back to Home</span></a></div>
+  </div>
+</div>
+
+</div><!-- /w -->
+
+<script>
+var lang = 'en';
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var el = document.getElementById('page-' + id);
+  if (el) { el.classList.add('active'); }
+  window.scrollTo(0, 0);
+}
+
+function goHome() { showPage('home'); }
+function goCases() { showPage('cases'); }
+function showCase(id) { showPage(id); }
+
+function goSection(id) {
+  showPage('home');
+  setTimeout(function(){
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 60);
+}
+
+function setLang(l) {
+  lang = l;
+  document.getElementById('lang-en').classList.toggle('active', l === 'en');
+  document.getElementById('lang-ru').classList.toggle('active', l === 'ru');
+  document.querySelectorAll('.t').forEach(function(el){
+    var val = el.getAttribute('data-' + l);
+    if (val !== null) el.innerHTML = val;
+  });
+  document.documentElement.lang = l;
+}
+
+function toggleAcc(trigger) {
+  trigger.parentElement.classList.toggle('open');
+}
+</script>
+</body>
+</html>
