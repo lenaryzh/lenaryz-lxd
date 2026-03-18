@@ -201,6 +201,21 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
   .hero h1 { font-size: 28px; }
   .case-header h1 { font-size: 24px; }
 }
+  /* Добавляем пространство в блоке контактов */
+#page-home .t { 
+  margin-bottom: 25px; /* Это отодвинет иконки пониже от текста */
+  display: block;      /* Чтобы отступ точно сработал */
+}
+  /* Делаем иконки более элегантными (по желанию) */
+.social-links a, .footer-links a {
+  opacity: 0.7; /* Делает их чуть мягче по цвету */
+  transition: opacity 0.3s ease;
+  margin-right: 20px; /* Расстояние между самими иконками */
+}
+
+.social-links a:hover, .footer-links a:hover {
+  opacity: 1; /* При наведении становятся ярче */
+}
 </style>
 </head>
 <body>
