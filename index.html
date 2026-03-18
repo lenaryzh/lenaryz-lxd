@@ -5,15 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elena Ryzhova — Learning Experience Designer</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-
 <style>
-  html {
-    scroll-behavior: smooth;
-  }
-
-  :root {
-  
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --cream:#F5F2EC;
@@ -209,25 +201,6 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
   .hero h1 { font-size: 28px; }
   .case-header h1 { font-size: 24px; }
 }
-  /* Добавляем пространство в блоке контактов */
-#page-home .t { 
-  margin-bottom: 8px;   /* Уменьшили с 25px до 8px, чтобы строки были ближе */
-  display: block; 
-}
-  /* Добавим отступ только для ПОСЛЕДНЕЙ строки текста перед иконками */
-#page-home .t:last-of-type {
-  margin-bottom: 24px;  /* А вот этот отступ отодвинет сами иконки */
-}
-  /* Делаем иконки более элегантными (по желанию) */
-.social-links a, .footer-links a {
-  opacity: 0.7; /* Делает их чуть мягче по цвету */
-  transition: opacity 0.3s ease;
-  margin-right: 20px; /* Расстояние между самими иконками */
-}
-
-.social-links a:hover, .footer-links a:hover {
-  opacity: 1; /* При наведении становятся ярче */
-}
 </style>
 </head>
 <body>
@@ -406,22 +379,11 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
       <span class="sec-mark">✦</span>
       <h2 class="sec-title t" data-en="Contact" data-ru="Контакт">Contact</h2>
     </div>
-   <p class="t" 
-   data-en="Ready to discuss your learning project or explore collaboration opportunities?" 
-     data-ru="Буду рада обсудить ваш проект или рассмотреть возможности сотрудничества.">
-     Ready to discuss your learning project or explore collaboration opportunities?
-  </p>
-  <p class="t" 
-     data-en="Ready to discuss your learning project or explore collaboration opportunities?" 
-     data-ru="Буду рада обсудить ваш проект или рассмотреть возможности для сотрудничества.">
-     Ready to discuss your learning project or explore collaboration opportunities?
-  </p>
-  <p class="t" 
-     data-en="I look forward to hearing from you." 
-     data-ru="Жду вашего сообщения.">
-     I look forward to hearing from you.
-  </p>
-</div>
+    <p class="contact-invite t"
+      data-en="Ready to discuss your learning project or explore collaboration opportunities? Write to me — I do my best to respond within 48 hours."
+      data-ru="Готовы обсудить образовательный проект или возможности для сотрудничества? Напишите мне — постараюсь ответить в течение 48 часов.">
+      Ready to discuss your learning project or explore collaboration opportunities? Write to me — I do my best to respond within 48 hours.
+    </p>
     <div class="contact-icons">
       <a href="mailto:lenaryzh@gmail.com" class="contact-icon-link" title="lenaryzh@gmail.com">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
