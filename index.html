@@ -74,7 +74,7 @@ nav{
 .case-row{display:flex;align-items:stretch;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background 0.18s}
 .case-row:last-child{border-bottom:none}
 .case-row:hover{background:var(--white)}
-.case-n{font-size:11px;color:var(--sage);letter-spacing:0.08em;padding:18px 0;width:55px;min-width:55px;border-right:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:20px}
+.case-n{font-size:11px;color:var(--sage);letter-spacing:0.08em;padding:18px 18px 18px 22px;min-width:48px;border-right:0.5px solid var(--border);display:flex;align-items:center;flex-shrink:0}
 .case-body{flex:1;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .case-name{font-size:15.5px;font-weight:400;color:var(--ink);letter-spacing:-0.01em;margin-bottom:3px}
 .case-hint{font-size:13px;color:var(--muted);font-style:italic}
@@ -178,28 +178,28 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
 .legal-body h3{font-size:13px;font-weight:500;color:var(--ink);margin:20px 0 6px}
 .legal-body h3:first-child{margin-top:0}
 .legal-body a{color:var(--forest);text-decoration:none}
-  /* Адаптация для мобильных устройств */
-@media (max-width: 768px) {
-  .w { padding: 0 20px; }
-  nav { flex-direction: column; gap: 15px; padding: 15px 0; }
-  .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; }
 
-  /* Исправление кривой колонки с номерами */
-  .case-item { display: flex; align-items: flex-start; } /* убеждаемся, что это флекс */
-  .case-n { 
-    width: 45px; 
-    min-width: 45px; 
-    flex-shrink: 0; 
-  }
-  .case-body { flex: 1; }
-
-  .hero { grid-template-columns: 1fr; text-align: center; padding: 30px 0; }
-  .photo-box { margin: 0 auto 20px auto; order: -1; }
-  .core { border-left: none; border-top: 2px solid var(--forest); padding: 12px 0 0 0; }
-  .problems, .services, .fb-grid, .meta-grid { grid-template-columns: 1fr; }
-  .prob, .srv { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-  .hero h1 { font-size: 28px; }
-  .case-header h1 { font-size: 24px; }
+@media(max-width:768px){
+  .w{padding:0 20px}
+  nav{flex-direction:column;gap:15px;padding:15px 0}
+  .nav-links{gap:12px;flex-wrap:wrap;justify-content:center}
+  .hero{grid-template-columns:1fr;text-align:center;padding:30px 0}
+  .photo-box{margin:0 auto 20px auto;order:-1;width:200px;height:240px}
+  .core{border-left:none;border-top:2px solid var(--forest);padding:12px 0 0 0}
+  .problems,.services,.fb-grid,.meta-grid{grid-template-columns:1fr}
+  .prob,.srv{border-right:none;border-bottom:0.5px solid var(--border);padding-bottom:20px}
+  .prob:last-child,.srv:last-child{border-bottom:none}
+  .hero h1{font-size:28px}
+  .case-header h1{font-size:24px}
+  .appr{grid-template-columns:1fr;gap:4px}
+  .case-nav{flex-direction:column;align-items:flex-start}
+  .fb-full{grid-column:1}
+  .sec-sub{display:none}
+  .case-body{flex-wrap:wrap}
+  .case-type{display:none}
+  .process-item{grid-template-columns:32px 1fr}
+  footer{flex-direction:column;gap:10px;align-items:flex-start}
+  .footer-links{flex-wrap:wrap;gap:10px}
 }
 </style>
 </head>
@@ -281,8 +281,9 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
         <div class="case-body">
           <div>
             <div class="case-name t" data-en="Natural Sciences Course Architecture" data-ru="Архитектура курса «Естествознание»">Natural Sciences Course Architecture</div>
-            <div class="case-hint t" data-en="Creative college" data-ru="Московский Креативный Техникум">Creative college · 72h · 6 modules · SJM</div>
+            <div class="case-hint t" data-en="Creative college · 72h · 6 modules · SJM" data-ru="Московский Креативный Техникум · 72ч · 6 модулей · SJM">Creative college · 72h · 6 modules · SJM</div>
           </div>
+          <span class="case-type t" data-en="Programme Design" data-ru="Проектирование программы">Programme Design</span>
           <span class="case-arr">→</span>
         </div>
       </div>
@@ -291,8 +292,9 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
         <div class="case-body">
           <div>
             <div class="case-name t" data-en="Induction Program Architecture" data-ru="Введение в креативные индустрии">Induction Program Architecture</div>
-            <div class="case-hint t" data-en="Creative college" data-ru="Московский Креативный Техникум ">Creative hub · 48–60h · up to 200 students</div>
+            <div class="case-hint t" data-en="Creative hub · 48–60h · up to 200 students" data-ru="Московский Креативный Техникум · 48–60ч · до 200 студентов">Creative hub · 48–60h · up to 200 students</div>
           </div>
+          <span class="case-type t" data-en="Onboarding Design" data-ru="Адаптация">Onboarding Design</span>
           <span class="case-arr">→</span>
         </div>
       </div>
@@ -301,8 +303,9 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
         <div class="case-body">
           <div>
             <div class="case-name t" data-en="Brain vs. Language" data-ru="Мозг vs Язык: как преодолеть «плато»">Brain vs. Language</div>
-            <div class="case-hint t" data-en="Private educator · HCD research" data-ru="Частный преподаватель · HCD-исследование">Private educator · HCD research · 24+ scenarios</div>
+            <div class="case-hint t" data-en="Private educator · HCD research · 24+ scenarios" data-ru="Частный преподаватель · HCD-исследование · 24+ сценария">Private educator · HCD research · 24+ scenarios</div>
           </div>
+          <span class="case-type t" data-en="Research & Design" data-ru="Исследование">Research & Design</span>
           <span class="case-arr">→</span>
         </div>
       </div>
@@ -360,7 +363,7 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
       </div>
       <div class="appr">
         <span class="appr-label t" data-en="Evidence-based" data-ru="Опора на доказательства">Evidence-based</span>
-        <span class="appr-text t" data-en="I use methods that are proven to work in practice, not just those that are &ldquo;trendy.&rdquo;" data-ru="Использую методы, которые работают на практике, а не просто кажутся модными.">I use methods that are proven to work in practice, not just those that are "trendy."</span>
+        <span class="appr-text t" data-en='I use methods that are proven to work in practice, not just those that are "trendy."' data-ru='Использую методы, которые работают на практике, а не просто кажутся модными.'>I use methods that are proven to work in practice, not just those that are "trendy."</span>
       </div>
       <div class="appr">
         <span class="appr-label t" data-en="Respect for how people learn" data-ru="Уважение к особенностям взрослого обучения">Respect for how people learn</span>
