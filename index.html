@@ -201,6 +201,9 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
   .hero h1 { font-size: 28px; }
   .case-header h1 { font-size: 24px; }
 }
+  .doc-section{padding:24px 0;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);margin:0 0 28px 0}
+.doc-btn{display:inline-block;padding:11px 20px;border:0.5px solid var(--border);background:var(--white);font-family:var(--sans);font-size:13px;color:var(--muted);text-decoration:none;cursor:pointer;transition:all 0.2s}
+.doc-btn:hover{border-color:var(--forest);color:var(--forest)}
 </style>
 </head>
 <body>
@@ -575,6 +578,14 @@ footer{padding:22px 0;display:flex;justify-content:space-between;align-items:cen
         </div>
       </div>
     </div>
+    <div class="doc-section">
+  <a class="doc-btn t"
+    id="blueprint-ns"
+    href="https://lenaryzh.github.io/lenaryz-lxd/blueprint-ns-en.pdf"
+    data-en-href="https://lenaryzh.github.io/lenaryz-lxd/blueprint-ns-en.pdf"
+    data-ru-href="https://lenaryzh.github.io/lenaryz-lxd/blueprint-ns-ru.pdf"
+    target="_blank">Blueprint</a>
+</div>
     <div class="case-nav">
       <a class="nav-btn" onclick="goCases()">← <span class="t" data-en="All Cases" data-ru="Все проекты">All Cases</span></a>
       <a class="nav-btn" onclick="showCase('ind')"><span class="t" data-en="Next Case →" data-ru="Следующий проект →">Next Case →</span></a>
@@ -902,6 +913,8 @@ function setLang(l) {
   document.querySelectorAll('.t').forEach(function(el){
     var val = el.getAttribute('data-' + l);
     if (val !== null) el.innerHTML = val;
+    var href = el.getAttribute('data-' + l + '-href');
+if (href !== null) el.href = href;
   });
   document.documentElement.lang = l;
 }
