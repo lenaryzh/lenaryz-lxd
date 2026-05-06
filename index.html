@@ -1090,11 +1090,17 @@ function goCases() { showPage('cases'); }
 function showCase(id) { showPage(id); }
 
 function goSection(id) {
-  showPage('home');
-  setTimeout(function(){
+  var homePage = document.getElementById('page-home');
+  if (!homePage.classList.contains('active')) {
+    showPage('home');
+    setTimeout(function(){
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+  } else {
     var el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 60);
+  }
 }
 
 function setLang(l) {
