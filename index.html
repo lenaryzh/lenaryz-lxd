@@ -22,32 +22,48 @@
   .sys-row{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid rgba(27,59,111,0.16)}
   @keyframes caseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
   @keyframes wobble{0%,100%{transform:translateX(0)}25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}}
+  @media (max-width:760px){
+    .hero-root{height:auto!important;min-height:0!important;padding-bottom:44px}
+    .hero-chaos,.hero-seam,.hero-handle{display:none!important}
+    .hero-sys{position:static!important;width:100%!important;padding:104px 24px 0!important;box-sizing:border-box}
+    .nav-links{gap:14px!important;font-size:10px!important}
+    .grid-2{grid-template-columns:1fr!important}
+    .grid-intro{grid-template-columns:1fr!important}
+    .grid-3{grid-template-columns:1fr!important;gap:6px!important}
+    .flow-arrow{transform:rotate(90deg);margin:2px 0}
+    .value-row{grid-template-columns:1fr!important;gap:6px!important}
+    .value-arrow{display:none!important}
+    .about-grid{grid-template-columns:1fr!important}
+    .about-photo{position:static!important;max-width:260px}
+    .proc-btn{grid-template-columns:34px 1fr auto!important;gap:10px!important}
+    .proc-body{padding-left:44px!important}
+  }
 </style>
 </helmet>
 
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
 <!-- ═══════════ HERO ═══════════ -->
-<div ref="{{ setHero }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" style="position:relative;width:100vw;height:100vh;min-height:640px;overflow:hidden;background:radial-gradient(120% 120% at 22% 40%,#F6F2EA 0%,#EFEAE0 60%,#E9E3D7 100%)">
+<div ref="{{ setHero }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" class="hero-root" style="position:relative;width:100vw;height:100vh;min-height:640px;overflow:hidden;background:radial-gradient(120% 120% at 22% 40%,#F6F2EA 0%,#EFEAE0 60%,#E9E3D7 100%)">
   <div style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:24px clamp(24px,4vw,56px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1B3B6F">
     <span style="font-weight:700">Елена Рыжова</span>
-    <span style="display:flex;gap:clamp(14px,2vw,26px);opacity:0.62"><a href="#cases">Кейсы</a><a href="#value">Подход</a><a href="#about">Обо мне</a><a href="#contact">Контакт</a></span>
+    <span class="nav-links" style="display:flex;gap:clamp(14px,2vw,26px);opacity:0.62"><a href="#cases">Кейсы</a><a href="#value">Подход</a><a href="#about">Обо мне</a><a href="#contact">Контакт</a></span>
   </div>
 
-  <div ref="{{ setChaos }}" style="position:absolute;top:0;left:0;bottom:0;width:52%;overflow:hidden;z-index:10">
+  <div ref="{{ setChaos }}" class="hero-chaos" style="position:absolute;top:0;left:0;bottom:0;width:52%;overflow:hidden;z-index:10">
     <sc-for list="{{ words }}" as="w" hint-placeholder-count="12">
       <span class="chaos-word" style="left:{{ w.x }}%;top:{{ w.y }}%;color:{{ w.color }};opacity:{{ w.op }};font-style:{{ w.style }};font-weight:{{ w.weight }};font-size:{{ w.size }}px">{{ w.text }}</span>
     </sc-for>
   </div>
 
-  <div ref="{{ setSys }}" style="position:absolute;top:0;right:0;bottom:0;width:48%;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(24px,4vw,64px) 0 clamp(40px,4vw,84px)">
+  <div ref="{{ setSys }}" class="hero-sys" style="position:absolute;top:0;right:0;bottom:0;width:48%;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(24px,4vw,64px) 0 clamp(40px,4vw,84px)">
     <span style="font-family:'Space Mono',monospace;font-weight:400;font-size:clamp(11px,0.9vw,13px);letter-spacing:0.12em;text-transform:uppercase;color:#B0803A;margin-bottom:16px">Елена Рыжова // Learning Experience Designer</span>
-    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(24px,2.4vw,34px);line-height:1.22;letter-spacing:-0.01em;color:#1B3B6F;max-width:22ch">Создаю <em style="font-family:'Newsreader',serif;font-style:italic;font-weight:500;color:#B0803A">системы&nbsp;обучения</em> из разрозненных знаний, идей и экспертизы</h1>
-    <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:#5a564d;max-width:48ch;margin-top:16px">Превращаю сложные знания и хаотичные процессы в образовательные пути, где структура, контент и опыт человека работают вместе.</p>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(24px,2.4vw,34px);line-height:1.32;letter-spacing:-0.01em;color:#1B3B6F;max-width:22ch">Создаю <span style="color:#B0803A;font-weight:600">системы&nbsp;обучения</span> из разрозненных знаний, идей и экспертизы</h1>
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:#5a564d;max-width:48ch;margin-top:24px">Превращаю сложные знания и хаотичные процессы в образовательные пути, где структура, контент и опыт человека работают вместе.</p>
     <div style="margin-top:20px;max-width:440px">
       <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#a49e92">// как я работаю — наведите на этап</span>
       <div style="margin-top:10px;border-top:1px solid rgba(27,59,111,0.18)">
         <sc-for list="{{ methodRows }}" as="m" hint-placeholder-count="5">
-          <div onMouseEnter="{{ m.enter }}" onMouseLeave="{{ methodLeave }}" style="display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(27,59,111,0.12);cursor:default;transition:background .16s;background:{{ m.bg }}">
+          <div onMouseEnter="{{ m.enter }}" onMouseLeave="{{ methodLeave }}" onClick="{{ m.enter }}" style="display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(27,59,111,0.12);cursor:pointer;transition:background .16s;background:{{ m.bg }}">
             <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#B0803A">{{ m.n }}</span>
             <span style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
               <span style="font-family:'Space Mono',monospace;font-size:12.5px;font-weight:400;letter-spacing:0.01em;color:#1B3B6F">{{ m.t }}</span>
@@ -63,12 +79,12 @@
   </div>
 
 
-  <svg ref="{{ setSeamSvg }}" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;z-index:20;pointer-events:none">
+  <svg ref="{{ setSeamSvg }}" class="hero-seam" width="100%" height="100%" preserveAspectRatio="none" style="position:absolute;inset:0;z-index:20;pointer-events:none">
     <path ref="{{ setSeamPath }}" d="" stroke="#1B3B6F" stroke-width="1.4" fill="none" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.55"></path>
     <path ref="{{ setSeamGlow }}" d="" stroke="#B0803A" stroke-width="2.4" fill="none" opacity="0"></path>
   </svg>
 
-  <div ref="{{ setHandle }}" onPointerDown="{{ onDragStart }}" style="position:absolute;top:0;bottom:0;z-index:25;width:44px;transform:translateX(-50%);cursor:ew-resize;display:flex;align-items:center;justify-content:center;touch-action:none">
+  <div ref="{{ setHandle }}" onPointerDown="{{ onDragStart }}" class="hero-handle" style="position:absolute;top:0;bottom:0;z-index:25;width:44px;transform:translateX(-50%);cursor:ew-resize;display:flex;align-items:center;justify-content:center;touch-action:none">
     <div style="width:36px;height:36px;border-radius:50%;background:#B0803A;color:#F4F0E8;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;box-shadow:0 8px 24px rgba(176,128,58,0.45)">⇄</div>
   </div>
 </div>
@@ -78,14 +94,14 @@
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
 <section id="value" style="background:#F1ECE2;padding:clamp(56px,7vw,96px) clamp(24px,5vw,64px);position:relative">
   <div style="max-width:940px;margin:0 auto">
-    <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A">// с чем ко мне приходят</span>
-    <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(28px,3vw,42px);letter-spacing:-0.02em;color:#1B3B6F;margin-top:14px">Запросы</h2>
+    <span style="display:inline-block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A;border:1px solid rgba(176,128,58,0.5);border-radius:4px;padding:5px 11px">Запросы</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3vw,40px);letter-spacing:-0.015em;color:#1B3B6F;margin-top:16px">С чем ко мне приходят</h2>
     <p style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#8a857c;margin-top:8px">Что я слышу — и что делаю.</p>
     <div style="margin-top:clamp(28px,3.5vw,42px);display:flex;flex-direction:column">
       <sc-for list="{{ valuePairs }}" as="p" hint-placeholder-count="3">
-        <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:clamp(8px,2vw,20px);align-items:center;padding:clamp(16px,2vw,22px) 0;border-top:1px solid rgba(27,59,111,0.16)">
-          <span style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(17px,1.7vw,22px);line-height:1.25;color:#6b665d">«{{ p.pain }}»</span>
-          <span style="text-align:center;color:#B0803A;font-family:'Space Mono',monospace;font-size:16px">→</span>
+        <div class="value-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:clamp(8px,2vw,20px);align-items:center;padding:clamp(16px,2vw,22px) 0;border-top:1px solid rgba(27,59,111,0.16)">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.35;color:#6b665d">«{{ p.pain }}»</span>
+          <span class="value-arrow" style="text-align:center;color:#B0803A;font-family:'Space Mono',monospace;font-size:16px">→</span>
           <div>
             <span style="display:block;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B0803A;margin-bottom:5px">{{ p.tag }}</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,17px);line-height:1.5;color:#1B3B6F">{{ p.body }}</span>
@@ -100,7 +116,7 @@
 
 <!-- ═══════════ CASES ═══════════ -->
 <section id="cases" style="background:#F4F0E8;padding:clamp(48px,6vw,88px) clamp(24px,5vw,64px);position:relative">
-  <div style="max-width:1180px;margin:0 auto">
+  <div style="max-width:1040px;margin:0 auto">
     <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
       <div>
@@ -115,10 +131,10 @@
     <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
     <div style="margin-top:clamp(32px,4vw,52px);border-top:1px solid rgba(27,59,111,0.18)">
       <sc-for list="{{ caseRows }}" as="c" hint-placeholder-count="3">
-        <div onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ caseLeave }}" style="display:grid;grid-template-columns:44px 1fr 1.15fr auto;gap:clamp(12px,2.4vw,32px);align-items:center;padding:clamp(24px,3vw,36px) 4px;border-bottom:1px solid rgba(27,59,111,0.18);cursor:pointer;transition:background .18s,padding-left .25s" style-hover="background:#EFEAE0;padding-left:14px">
+        <div onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ caseLeave }}" style="display:grid;grid-template-columns:44px 1fr 1.15fr auto;gap:clamp(12px,2.4vw,32px);align-items:center;padding:clamp(18px,2.2vw,26px) 4px;border-bottom:1px solid rgba(27,59,111,0.18);cursor:pointer;transition:background .18s,padding-left .25s" style-hover="background:#EFEAE0;padding-left:14px">
           <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#B0803A">{{ c.num }}</span>
           <div>
-            <span style="display:block;font-family:'Newsreader',serif;font-size:clamp(20px,2vw,27px);font-weight:500;letter-spacing:-0.015em;color:#1B3B6F;line-height:1.1">{{ c.client }}</span>
+            <span style="display:block;font-family:'Newsreader',serif;font-size:clamp(18px,1.7vw,23px);font-weight:500;letter-spacing:-0.015em;text-transform:uppercase;color:#1B3B6F;line-height:1.1">{{ c.client }}</span>
             <span style="display:block;font-family:'Space Grotesk',sans-serif;font-style:italic;font-size:clamp(13px,1.1vw,15px);color:#8a857c;margin-top:5px;line-height:1.3">{{ c.tagline }}</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr;gap:6px">
@@ -134,66 +150,87 @@
 
     <!-- LEVEL 2 · expanded longread -->
     <sc-if value="{{ caseOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="min-height:100vh;animation:caseIn .45s cubic-bezier(0.16,1,0.3,1)">
+    <div class="case-expanded" style="max-width:900px;margin:0 auto;animation:caseIn .45s cubic-bezier(0.16,1,0.3,1)">
       <div style="position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;background:rgba(244,240,232,0.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:16px 0;margin-bottom:28px;border-bottom:1px solid rgba(27,59,111,0.16)">
         <button onClick="{{ closeCase }}" style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1B3B6F;background:none;border:none;cursor:pointer;padding:0;transition:color .2s" style-hover="color:#B0803A">← Все кейсы</button>
         <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;color:#B0803A">{{ ac.counter }}</span>
       </div>
-      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8a857c;margin-bottom:16px">CLIENT: {{ ac.metaClient }} · {{ ac.metaProduct }}</div>
-      <h3 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);letter-spacing:-0.025em;color:#1B3B6F;line-height:1.04">{{ ac.client }}</h3>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8a857c;margin-bottom:14px">{{ ac.metaClient }} · {{ ac.metaProduct }}</div>
+      <h3 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(26px,3vw,38px);letter-spacing:-0.025em;text-transform:uppercase;color:#1B3B6F;line-height:1.06">{{ ac.client }}</h3>
       <p style="font-family:'Space Grotesk',sans-serif;font-style:italic;font-size:clamp(15px,1.4vw,18px);color:#6b665d;margin-top:10px">{{ ac.subtitle }}</p>
 
-      <!-- A · passport -->
-      <div style="margin-top:clamp(36px,4vw,56px)">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">A · Паспорт проекта</span>
-        <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(27,59,111,0.14);border:1px solid rgba(27,59,111,0.14)">
-          <sc-for list="{{ ac.passport }}" as="p" hint-placeholder-count="5">
-            <div style="background:#F4F0E8;padding:16px 20px;grid-column:{{ p.span }}">
-              <div style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a49e92;margin-bottom:7px">{{ p.k }}</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.55;color:#3a372f">{{ p.v }}</div>
-            </div>
-          </sc-for>
+      <!-- БЫЛО → СТАЛО -->
+      <div class="grid-3" style="margin-top:clamp(28px,3.5vw,44px);display:grid;grid-template-columns:1fr 48px 1fr;gap:clamp(12px,2vw,24px);align-items:center;border-top:1px solid rgba(27,59,111,0.16);border-bottom:1px solid rgba(27,59,111,0.16);padding:clamp(20px,2.6vw,30px) 0">
+        <div>
+          <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#a49e92">было</span>
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(16px,1.5vw,20px);line-height:1.4;color:#8a8378;margin-top:8px;text-wrap:pretty">{{ ac.before }}</p>
+        </div>
+        <div class="flow-arrow" style="text-align:center;font-family:'Space Mono',monospace;font-size:clamp(22px,3vw,34px);color:#B0803A">→</div>
+        <div>
+          <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#B0803A">стало</span>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(16px,1.5vw,20px);line-height:1.4;color:#1B3B6F;margin-top:8px;text-wrap:pretty">{{ ac.after }}</p>
         </div>
       </div>
 
-      <!-- B · process timeline / accordions -->
-      <div style="margin-top:clamp(40px,5vw,64px)">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">B · Процесс проектирования</span>
-        <div style="margin-top:18px;border-top:1px solid rgba(27,59,111,0.16)">
+      <!-- 1 · ПРОБЛЕМА + ЗАДАЧА -->
+      <div class="grid-intro" style="margin-top:clamp(36px,4.5vw,60px);display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,3vw,48px);align-items:start">
+        <div>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#a49076">// проблема</span>
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:clamp(18px,1.9vw,25px);line-height:1.4;color:#3f3a31;margin-top:14px;text-wrap:pretty">{{ ac.problem }}</p>
+        </div>
+        <div style="border-left:2px solid #B0803A;padding-left:clamp(16px,2vw,24px)">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#B0803A">// задача</span>
+          <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.25vw,16px);line-height:1.6;color:#3a372f;margin-top:12px">{{ ac.task }}</p>
+        </div>
+      </div>
+
+      <!-- 2 · ПОДХОД -->
+      <div style="margin-top:clamp(44px,5.5vw,76px)">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// подход · как я принимала решения</span>
+        <div class="grid-2" style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(27,59,111,0.12);border:1px solid rgba(27,59,111,0.12)">
           <sc-for list="{{ ac.processRows }}" as="s" hint-placeholder-count="6">
-            <div style="border-bottom:1px solid rgba(27,59,111,0.16)">
-              <button onClick="{{ s.toggle }}" style="display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 4px;transition:background .15s" style-hover="background:#EFEAE0">
+            <div style="background:#F4F0E8;padding:clamp(20px,2.4vw,26px)">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px">
                 <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#B0803A">{{ s.n }}</span>
-                <span style="display:flex;flex-direction:column;gap:3px">
-                  <span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(17px,1.6vw,21px);font-weight:600;color:#1B3B6F;line-height:1.2">{{ s.t }}</span>
-                  <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#B0803A">{{ s.stat }}</span>
-                </span>
-                <span style="font-family:'Newsreader',serif;font-size:26px;font-weight:300;color:#1B3B6F;transition:transform .3s;transform:{{ s.rotate }}">+</span>
-              </button>
-              <sc-if value="{{ s.open }}" hint-placeholder-val="{{ false }}">
-                <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,17px);line-height:1.65;color:#4a463f;padding:0 4px 24px 68px;max-width:80ch">{{ s.d }}</p>
-              </sc-if>
+                <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#B0803A;text-align:right">{{ s.stat }}</span>
+              </div>
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.5vw,19px);font-weight:600;color:#1B3B6F;line-height:1.22">{{ s.t }}</h4>
+              <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.2vw,15px);line-height:1.6;color:#4a463f;margin-top:9px">{{ s.d }}</p>
             </div>
           </sc-for>
         </div>
       </div>
 
+      <!-- 3 · РЕШЕНИЯ / РЕЗУЛЬТАТ -->
+      <div style="margin-top:clamp(44px,5.5vw,76px)">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// что стало возможно</span>
+        <div class="grid-2" style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,20px)">
+          <sc-for list="{{ ac.results }}" as="r" hint-placeholder-count="5">
+            <div style="background:#FBF9F4;border:1px solid rgba(27,59,111,0.12);border-radius:5px;padding:clamp(20px,2.4vw,28px)">
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(17px,1.6vw,20px);font-weight:600;color:#1B3B6F;line-height:1.25">{{ r.t }}</h4>
+              <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.3vw,16px);line-height:1.6;color:#4a463f;margin-top:10px">{{ r.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- 4 · АРТЕФАКТЫ -->
       <sc-if value="{{ ac.hasArtifacts }}" hint-placeholder-val="{{ false }}">
-      <div style="margin-top:clamp(40px,5vw,64px)">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">C · Артефакты</span>
-        <div style="margin-top:16px;display:flex;flex-direction:column;gap:0">
+      <div style="margin-top:clamp(44px,5.5vw,76px)">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// артефакты — документы проекта</span>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
           <sc-for list="{{ ac.artifacts }}" as="a" hint-placeholder-count="1">
             <div>
-              <button onClick="{{ a.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;background:none;border:none;border-top:1px solid rgba(27,59,111,0.18);padding:16px 4px;cursor:pointer;text-align:left;transition:background .18s" style-hover="background:rgba(176,128,58,0.08)">
-                <span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.5vw,19px);font-weight:600;color:#1B3B6F">{{ a.title }}</span>
+              <button onClick="{{ a.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;background:#FBF9F4;border:1px solid rgba(27,59,111,0.16);border-radius:5px;padding:16px 20px;cursor:pointer;text-align:left;transition:background .18s,border-color .18s" style-hover="background:rgba(176,128,58,0.08);border-color:#B0803A">
+                <span style="display:flex;align-items:center;gap:12px"><span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#B0803A">PDF</span><span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.5vw,19px);font-weight:600;color:#1B3B6F">{{ a.title }}</span></span>
                 <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.06em;color:#B0803A">{{ a.toggleLabel }}</span>
               </button>
               <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
                 <sc-if value="{{ a.isDoc }}" hint-placeholder-val="{{ false }}">
-                  <div ref="{{ a.setDoc }}"></div>
+                  <div ref="{{ a.setDoc }}" style="margin-top:12px"></div>
                 </sc-if>
                 <sc-if value="{{ a.notDoc }}" hint-placeholder-val="{{ false }}">
-                  <div style="background:#12305C;padding:clamp(24px,3vw,44px);position:relative;overflow:hidden">
+                  <div style="margin-top:12px;background:#12305C;padding:clamp(24px,3vw,44px);position:relative;overflow:hidden;border-radius:5px">
                     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(221,230,242,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(221,230,242,0.06) 1px,transparent 1px);background-size:36px 36px"></div>
                     <div style="position:relative">{{ a.svg }}</div>
                   </div>
@@ -205,28 +242,15 @@
       </div>
       </sc-if>
 
-      <!-- D · results -->
-      <div style="margin-top:clamp(40px,5vw,64px)">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">D · Новая система</span>
-        <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.5vw,36px)">
-          <sc-for list="{{ ac.results }}" as="r" hint-placeholder-count="5">
-            <div style="border-top:2px solid #B0803A;padding-top:16px">
-              <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(17px,1.6vw,20px);font-weight:600;color:#1B3B6F;line-height:1.25">{{ r.t }}</h4>
-              <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,16px);line-height:1.6;color:#4a463f;margin-top:10px">{{ r.d }}</p>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-
       <!-- E · feedback -->
       <sc-if value="{{ ac.hasFeedback }}" hint-placeholder-val="{{ false }}">
       <div style="margin-top:clamp(48px,6vw,80px)">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="color:#B0803A;font-size:14px">✦</span><span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">Отзыв клиента</span></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px)">
+        <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px)">
           <sc-for list="{{ ac.feedback }}" as="f" hint-placeholder-count="4">
             <div style="border-top:1px solid rgba(27,59,111,0.2);padding-top:16px;grid-column:{{ f.span }}">
               <span style="display:block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#B0803A;margin-bottom:12px">{{ f.topic }}</span>
-              <p style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(17px,1.7vw,23px);line-height:1.4;color:#2f2c26;text-wrap:pretty">«{{ f.quote }}»</p>
+              <p style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(15px,1.3vw,18px);line-height:1.45;color:#2f2c26;text-wrap:pretty">«{{ f.quote }}»</p>
             </div>
           </sc-for>
         </div>
@@ -252,15 +276,19 @@
 <!-- ═══════════ ABOUT ═══════════ -->
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
 <section id="about" style="background:#EFE7D8;padding:clamp(48px,6vw,88px) clamp(24px,5vw,64px);position:relative">
-  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:clamp(220px,26vw,340px) 1fr;gap:clamp(36px,5vw,80px);align-items:start">
-    <div style="position:sticky;top:32px">
+  <div class="about-grid" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:clamp(220px,26vw,340px) 1fr;gap:clamp(36px,5vw,80px);align-items:start">
+    <div class="about-photo" style="position:sticky;top:32px">
       <div style="width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:6px">
         <img src="./assets/elena.jpg" alt="Елена Рыжова" style="width:100%;height:100%;object-fit:cover;object-position:58% 20%;display:block"/>
+      </div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:2px">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#1B3B6F">Елена Рыжова</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:#B0803A">// Learning Experience Designer</span>
       </div>
     </div>
     <div>
       <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A">// обо мне</span>
-      <p style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(22px,2.4vw,34px);line-height:1.3;letter-spacing:-0.015em;color:#1B3B6F;margin-top:18px;max-width:24ch;text-wrap:balance">Хорошее обучение меняет то, как люди думают или работают. <span style="color:#9c948a">Большинство программ&nbsp;— нет.</span> <em style="font-style:italic;color:#B0803A">Именно этот разрыв я&nbsp;проектирую.</em></p>
+      <p style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(22px,2.4vw,34px);line-height:1.3;letter-spacing:-0.015em;color:#1B3B6F;margin-top:18px;max-width:24ch;text-wrap:balance">Хорошее обучение меняет то, как люди думают или работают. <span style="color:#9c948a">Большинство программ&nbsp;— нет.</span> <em style="display:block;margin-top:0.45em;font-style:italic;color:#B0803A">Именно этот разрыв я&nbsp;проектирую.</em></p>
       <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.2vw,17px);line-height:1.65;color:#4a463f;margin-top:24px">{{ about.lead }}</p>
       <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.5vw,40px)">
         <sc-for list="{{ about.poles }}" as="pole" hint-placeholder-count="2">
@@ -350,51 +378,43 @@ class Component extends DCLogic {
   dragging = false;
   state = { data: null, methodHover: -1, caseIdx: null, caseAcc: -1, caseHover: null, passportOpen: false, artOpen: {}, legalKey: null, docHtml: {} };
   _scrollCases = () => { requestAnimationFrame(() => { const el = document.getElementById("cases"); if (el) window.scrollTo({ top: el.offsetTop - 10, behavior: "smooth" }); }); };
-  _docCache = {};
-  _docNodes = {};
   _docRefs = {};
-  _docContainers = {};
-  _buildIframe = (html) => {
-    const f = document.createElement("iframe");
-    f.setAttribute("loading", "lazy");
-    f.style.cssText = "width:100%;height:680px;border:1px solid rgba(27,59,111,0.18);background:#F4F0E8;display:block";
-    f.srcdoc = html;
-    return f;
-  };
-  _placeholder = () => {
-    const ph = document.createElement("div");
-    ph.style.cssText = "height:200px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(27,59,111,0.18);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8a857c";
-    ph.textContent = "Загрузка…";
-    return ph;
-  };
-  // Stable ref per src: React runs it once (not on every re-render), so the
-  // iframe is never detached/moved (which would reload it to about:blank).
+  // Plain src iframe, freshly built each time the container mounts. A src-based
+  // iframe reloads from the file when (re)inserted — never sticks at about:blank
+  // the way a moved srcdoc iframe does. No persistence / heal timer needed.
   _refFor = (src) => {
     if (!this._docRefs[src]) {
       this._docRefs[src] = (el) => {
-        if (!el) return;
-        this._docContainers[src] = el;
-        const node = this._docNodes[src];
-        if (node) { if (node.parentNode !== el) { el.innerHTML = ""; el.appendChild(node); } return; }
+        if (!el || el.getAttribute("data-mounted") === src) return;
+        el.setAttribute("data-mounted", src);
         el.innerHTML = "";
-        const ph = this._placeholder();
-        this._docNodes[src] = ph;
-        el.appendChild(ph);
-        const load = (html) => {
-          const f = this._buildIframe(html);
-          this._docNodes[src] = f;
-          const c = this._docContainers[src];
-          if (c) { c.innerHTML = ""; c.appendChild(f); }
-        };
-        if (this._docCache[src]) load(this._docCache[src]);
-        else fetch(src).then((r) => r.text()).then((html) => { this._docCache[src] = html; load(html); }).catch(() => {});
+        const f = document.createElement("iframe");
+        f.setAttribute("loading", "lazy");
+        f.setAttribute("src", src);
+        f.style.cssText = "width:100%;height:680px;border:1px solid rgba(27,59,111,0.18);background:#F4F0E8;display:block";
+        el.appendChild(f);
       };
     }
     return this._docRefs[src];
   };
 
-  setHero = (el) => { this.hero = el; };
-  setChaos = (el) => { this.chaos = el; };
+  _ensureLoop = () => { if (!this._running) { this._running = true; this.raf = requestAnimationFrame(this._loop); } };
+  setHero = (el) => {
+    this.hero = el;
+    if (el) {
+      this._layout();
+      this._ensureLoop();
+      if (this._io) { try { this._io.disconnect(); } catch (e) {} this._io.observe(el); }
+    }
+  };
+  setChaos = (el) => {
+    this.chaos = el;
+    if (el) {
+      this.wordEls = Array.from(el.querySelectorAll(".chaos-word"));
+      this.wstate = this.wordEls.map(() => ({ cx: NaN, cy: NaN, t: Math.random() * 100 }));
+      this._ensureLoop();
+    }
+  };
   setSys = (el) => { this.sys = el; };
   setThreads = (el) => { this.threads = el; };
   setPhoto = (el) => { this.photo = el; };
@@ -590,6 +610,9 @@ class Component extends DCLogic {
         num: c.num, client: c.client, subtitle: c.subtitle,
         counter: c.num + " / " + String(total).padStart(2, "0"),
         metaClient: findMeta("Клиент"), metaProduct: findMeta("Продукт"),
+        before: c.before, after: c.after,
+        problem: findMeta("Контекст") || c.before,
+        task: findMeta("Задача"),
         passport: c.passport.map((p, j) => ({ k: p.k, v: p.v, span: j === c.passport.length - 1 && c.passport.length % 2 === 1 ? "1 / -1" : "auto" })),
         processRows: c.process.map((s, j) => ({ n: s.n, t: s.t, stat: s.stat, d: s.d, open: S.caseAcc === j, rotate: S.caseAcc === j ? "rotate(45deg)" : "rotate(0deg)", toggle: () => this.setState({ caseAcc: S.caseAcc === j ? -1 : j }) })),
         results: c.results,
