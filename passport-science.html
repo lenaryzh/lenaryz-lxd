@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Научный паспорт креативного продукта</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: #F4F0E8; /* Теплая бумага */
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #1B3B6F; /* Глубокий чернильный */
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .passport-container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .passport-header h1 {
+      font-family: 'Newsreader', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3.5vw, 46px);
+      letter-spacing: -0.02em;
+      color: #1B3B6F;
+      margin-bottom: 8px;
+    }
+
+    .tech-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #B0803A; /* Латунный акцент */
+    }
+
+    /* Архитектура сквозных блоков-уровней */
+    .level-block {
+      border: 1px solid rgba(27, 59, 111, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+      padding: 32px;
+      position: relative;
+    }
+
+    .level-badge {
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      background: #F4F0E8;
+      padding: 0 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Уровень 1: Базовые элементы */
+    .base-flex {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .base-item { flex: 1; }
+    .base-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #1B3B6F; }
+    .base-item p { font-size: 14px; color: #5a564d; line-height: 1.5; }
+
+    /* Уровень 2: Аналитическая матрица */
+    .section-headline {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: #1B3B6F;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 24px;
+      border-top: 1px dashed rgba(27, 59, 111, 0.2);
+      padding-top: 24px;
+    }
+
+    .required-zone {
+      border-right: 1px solid rgba(27, 59, 111, 0.16);
+      padding-right: 24px;
+    }
+
+    .zone-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: #1B3B6F;
+    }
+    .zone-title.accent { color: #B0803A; }
+
+    .flow-steps {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-size: 15px;
+      line-height: 2;
+      color: #1B3B6F;
+      margin-top: 8px;
+    }
+
+    .select-zone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card-select {
+      background: rgba(27, 59, 111, 0.03);
+      border: 1px solid rgba(27, 59, 111, 0.08);
+      padding: 16px;
+    }
+    .card-select h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #1B3B6F; }
+    .card-select .latin { font-family: 'Space Mono', monospace; font-size: 9px; color: #8f8879; text-transform: uppercase; margin-bottom: 12px; }
+    .card-select p { font-size: 12px; color: #5a564d; line-height: 1.4; }
+
+    /* Уровень 3: Финал и выгрузка */
+    .output-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .synthesis-list { list-style: none; }
+    .synthesis-list li { font-size: 14px; color: #5a564d; margin-bottom: 10px; position: relative; padding-left: 14px; }
+    .synthesis-list li::before { content: "—"; position: absolute; left: 0; color: #B0803A; }
+    .synthesis-list li:last-child { margin-bottom: 0; }
+
+    .final-box {
+      border: 1px dashed #B0803A;
+      padding: 24px;
+      background: rgba(176, 128, 58, 0.04);
+      text-align: center;
+    }
+    .final-box h3 { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; color: #B0803A; text-transform: uppercase; margin-bottom: 8px; }
+    .final-box p { font-size: 13px; font-weight: 400; line-height: 1.4; color: #5a564d; margin-bottom: 16px; }
+
+    .pdf-button {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #1B3B6F;
+      border: 1px solid #1B3B6F;
+      padding: 6px 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    /* Адаптивный сброс сетки для мобильных устройств */
+    @media (max-width: 768px) {
+      .base-flex, .matrix-grid, .select-zone-grid, .output-grid { grid-template-columns: 1fr; flex-direction: column; gap: 24px; }
+      .required-zone { border-right: none; border-bottom: 1px solid rgba(27, 59, 111, 0.16); padding-right: 0; padding-bottom: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="passport-container">
+    
+    <!-- Шапка страницы -->
+    <div class="passport-header">
+      <div class="tech-meta">Структура и логика</div>
+      <h1>Научный паспорт креативного продукта</h1>
+    </div>
+
+    <!-- УРОВЕНЬ 1: ВХОД (Базовые элементы) -->
+    <div class="level-block">
+      <div class="level-badge" style="color: #8f8879;">01 / Базовые элементы (для всех)</div>
+      <div class="base-flex">
+        <div class="base-item">
+          <h3>Описание продукта</h3>
+          <p>Фиксация фундаментальных данных: название, фото и социокультурный контекст продукта.</p>
+        </div>
+        <div class="base-item">
+          <h3>Главный вопрос исследования</h3>
+          <p>Формулирование центрального проблемного вопроса, определяющего вектор всей научной работы.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- УРОВЕНЬ 2: ЯДРО (Аналитические разделы) -->
+    <div class="level-block">
+      <div class="level-badge">02 / Аналитические разделы (3 раздела)</div>
+      <div class="section-headline">Исследование сенсорных кодов</div>
+      
+      <div class="matrix-grid">
+        
+        <!-- Обязательный блок: Зрение -->
+        <div class="required-zone">
+          <div class="zone-title">Раздел 1 / Обязательно</div>
+          <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 4px;">Визуальный код</h3>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: #B0803A; text-transform: uppercase; margin-bottom: 12px;">Зрение</div>
+          
+          <div class="flow-steps">
+            Наблюдение &rarr; Вопрос &rarr; Гипотеза &rarr; Эксперимент &rarr; Вывод &rarr; Применение
+          </div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: #8f8879; margin-top: 16px;">Объём: 300–600 слов</div>
+        </div>
+
+        <!-- Блоки на выбор: Сенсорные системы -->
+        <div>
+          <div class="zone-title accent">Разделы 2–3 / Выбрать 2 из 3 сенсорных систем</div>
+          <div class="select-zone-grid">
+            
+            <div class="card-select">
+              <h4>Тактильный интерфейс</h4>
+              <div class="latin">Механорецепция</div>
+              <p>Для физических продуктов: упаковка, одежда, устройства.</p>
+            </div>
+
+            <div class="card-select">
+              <h4>Звуковой ландшафт</h4>
+              <div class="latin">Слух</div>
+              <p>Для аудио/видео: реклама, подкасты, игры, аудиобрендинг.</p>
+            </div>
+
+            <div class="card-select">
+              <h4>Сенсорный код</h4>
+              <div class="latin">Хеморецепция</div>
+              <p>Для продуктов с запахом/вкусом: еда, парфюмерия, ритейл.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- УРОВЕНЬ 3: СИНТЕЗ И ИТОГ -->
+    <div class="level-block">
+      <div class="level-badge" style="color: #B0803A;">03 / Итоговый синтез</div>
+      
+      <div class="output-grid">
+        <!-- Левая часть: Методология синтеза -->
+        <div>
+          <div class="zone-title" style="margin-bottom: 12px;">Итоговый синтез (Модуль 6)</div>
+          <ul class="synthesis-list">
+            <li>Ключевые инсайты (3 главные находки)</li>
+            <li>Противоречия и синергии между системами</li>
+            <li>Практические рекомендации с научным обоснованием</li>
+          </ul>
+        </div>
+        
+        <!-- Правая часть: Результат (Финальный артефакт) -->
+        <div class="final-box">
+          <h3>Готовый паспорт</h3>
+          <p>Профессиональный документ для вашего портфолио. Демонстрирует способность анализировать любые продукты на языке современной науки.</p>
+          <div class="pdf-button">Экспорт в PDF</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

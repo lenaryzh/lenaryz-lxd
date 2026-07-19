@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Blueprint · Введение в креативные индустрии</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F4F0E8;--white:#FBF9F4;--ink:#24221E;--muted:#6b665d;
+  --faint:#b3ab9c;--forest:#1B3B6F;--sage:#B0803A;
+  --border:rgba(27,59,111,0.16);--sans:'Space Grotesk',system-ui,sans-serif;
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);padding:32px;max-width:960px;margin:0 auto}
+
+.doc-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:1.5px solid var(--ink);margin-bottom:0}
+.doc-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.doc-fullname{font-size:12px;color:var(--muted)}
+.doc-meta{font-size:12px;color:var(--muted);text-align:right;line-height:1.7}
+
+.grid{display:grid;border-left:0.5px solid var(--border);border-top:0.5px solid var(--border)}
+.row-2{grid-template-columns:1fr 1fr}
+.row-1{grid-template-columns:1fr}
+
+.cell{border-right:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:14px 16px}
+.cell-head{font-size:11px;font-weight:500;color:var(--ink);letter-spacing:0.03em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:0.5px solid var(--border)}
+.cell-sub{font-size:10.5px;color:var(--sage);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:5px;margin-top:10px}
+.cell-sub:first-of-type{margin-top:0}
+.cell-text{font-size:12.5px;color:var(--muted);line-height:1.65}
+.cell-text ul{padding-left:13px;margin-top:3px}
+.cell-text li{margin-bottom:3px;font-size:12.5px;color:var(--muted)}
+.cell-text b{color:var(--ink);font-weight:500}
+
+.doc-name,.doc-fullname,.doc-meta,.cell-head,.cell-sub{font-family:'Space Mono',monospace}
+.doc-name{color:var(--forest);font-weight:700;letter-spacing:0.02em}
+.cell-head{color:var(--forest);font-weight:700}
+.cell-sub{color:var(--sage);font-weight:700}
+.cell-text b{color:var(--forest)}
+.doc-top{border-bottom-color:var(--forest)}
+@media print{
+  body{padding:20px;background:white}
+  @page{margin:1.5cm;size:A4}
+}
+.cell-head{background:rgba(27,59,111,0.05);margin:-14px -16px 12px;padding:11px 16px;font-size:11.5px;letter-spacing:0.06em}
+</style>
+</head>
+<body>
+
+<div class="doc-top">
+  <div>
+    <div class="doc-name">Blueprint программы · Лаборатория креативных индустрий</div>
+    <div class="doc-fullname">Введение в креативные индустрии · Адаптационный модуль · 2025</div>
+  </div>
+  <div class="doc-meta">
+    50 академических часов · 5 недель<br>
+    2 интенсива в неделю · 5 часов каждый<br>
+    54–200 студентов · 3 специализации
+  </div>
+</div>
+
+<div class="grid row-2">
+  <div class="cell">
+    <div class="cell-head">Аудитория (персона)</div>
+    <div class="cell-sub">Профиль</div>
+    <div class="cell-text">15–16 лет · первокурсники после ОГЭ · кино, дизайн, маркетинг<br>Только что выбрали специальность · нет опыта в профессии<br>«На гигантском расстоянии от индустриального»</div>
+    <div class="cell-sub">Ключевая потребность</div>
+    <div class="cell-text">Почувствовать вкус профессии через делание. Найти «своих людей» — для этого возраста важнее навыков (78% vs 23%, данные анкеты). Кейс-метод и проблематизация не работают.</div>
+    <div class="cell-sub">Цель студента</div>
+    <div class="cell-text">Получить практическое основание для осознанного выбора специальности. Создать первый артефакт, который хочется забрать домой.</div>
+    <div class="cell-sub">Образовательный процесс</div>
+    <div class="cell-text">70% практики · 30% теории. Без домашних заданий — все артефакты создаются внутри проб. Рефлексия и обратная связь встроены в каждое занятие.</div>
+  </div>
+  <div class="cell">
+    <div class="cell-head">Стейкхолдеры / контекст программы</div>
+    <div class="cell-sub">Ключевые стейкхолдеры</div>
+    <div class="cell-text">
+      <ul>
+        <li>Академический директор</li>
+        <li>Руководитель направления</li>
+        <li>Преподаватели по специализациям</li>
+        <li>Студенты — 54 человека, три специализации</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Явные цели заказчика</div>
+    <div class="cell-text">
+      <ul>
+        <li>Дать первый опыт креативных проб в своём направлении</li>
+        <li>Заложить базу саморефлексии и профориентации</li>
+        <li>Убрать эффект «лоскутного одеяла» — обеспечить связность</li>
+        <li>Минимизировать фронтальный формат · обеспечить понятную оценку</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Скрытые цели заказчика</div>
+    <div class="cell-text">
+      <ul>
+        <li>Не стимулировать перевыбор специальности</li>
+        <li>Обеспечить управляемость при масштабировании до 200 студентов</li>
+        <li>Снизить тревожность первых дней · стабилизировать мотивацию</li>
+        <li>Создать пространство для поиска друзей · влюбить в профессию</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="grid row-1">
+  <div class="cell">
+    <div class="cell-head">Ключевые цели: каких целей должна достичь программа?</div>
+    <div class="cell-sub">Бизнес-цели заказчика</div>
+    <div class="cell-text">Выпускать специалистов с портфолио раньше всех · укрепить репутацию лидера подготовки в КИ · обеспечить практико-ориентированный опыт с 1-го курса · создавать инновационные методы обучения</div>
+    <div class="cell-sub">Цели программы</div>
+    <div class="cell-text"><b>01 —</b> Дать первый практический опыт в креативных профессиях<br><b>02 —</b> Заложить основу осознанного самоопределения</div>
+    <div class="cell-sub">Целевые действия студента</div>
+    <div class="cell-text">
+      <ul>
+        <li>Создаёт минимум 7 из 10 артефактов в своей специализации в разных контекстах</li>
+        <li>Рефлексирует каждую пробу: фиксирует действия, результат, эмоции, связь с профессией</li>
+        <li>Формулирует понимание своей профессии и смежных специальностей через опыт проб и встречи с профессионалами</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="grid row-1">
+  <div class="cell">
+    <div class="cell-head">Подход к проектированию</div>
+    <div class="cell-sub">Проектирование от опыта студента</div>
+    <div class="cell-text">Вводный адаптационный модуль, не учебная дисциплина — фокус на знакомстве с ландшафтом профессии и на социализации. Компетенции — задача профильных дисциплин следующих 3–4 лет.</div>
+    <div class="cell-sub">Ключевое дизайн-решение</div>
+    <div class="cell-text">Студент остаётся в своей специальности на всех пробах — меняются только контексты применения навыков (авторский · социальный · коммерческий · экспериментальный). Решение укрепляет студента в выборе, не стимулируя перевыбор.</div>
+    <div class="cell-sub">Student Journey Map</div>
+    <div class="cell-text">Управление мотивацией встроено в каждый этап: внимание (ритуалы) → значимость («ты делаешь настоящую работу») → уверенность (тьюторы, быстрый фидбек) → закрепление (скетчбук, Show & Tell).</div>
+  </div>
+</div>
+
+<div class="grid row-1">
+  <div class="cell">
+    <div class="cell-head">Основная модель обучения</div>
+    <div class="cell-sub">Опытно-ориентированное обучение (цикл Колба) · структура каждого занятия: Разогрев → Теория → Практика → Презентация</div>
+    <div class="cell-text">10 практических проб в своей специализации в разных контекстах · каждая проба — реальный артефакт за 2,5 часа · минимальный порог — 7 из 10. Скетчбук — сквозной инструмент рефлексии.<br><br>Цикл: проба → скетчбук (рефлексия) → Show & Tell + тьютор (концептуализация) → следующая проба.<br><br>Итог: портфолио 7+ артефактов · скетчбук · финальная презентация.</div>
+    <div class="cell-sub">Стратегии поддержки</div>
+    <div class="cell-text">
+      <ul>
+        <li><b>Онбординг</b> за 1–2 дня до старта</li>
+        <li><b>Тьюторы-второкурсники</b> — меньшая дистанция власти · модель UAL (tutorial system)</li>
+        <li><b>Show & Tell</b> — малые группы после каждой пробы</li>
+        <li><b>Ритуалы индустрии</b> — профессиональная идентичность через традиции</li>
+        <li><b>Живая библиотека</b> — неделя 5 · профессионалы разных ролей · ротация по станциям</li>
+        <li><b>Скетчбук</b> — индивидуальная работа · рефлексия · артефакт · допуск к финалу</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="grid row-2">
+  <div class="cell">
+    <div class="cell-head">Критерии успеха программы</div>
+    <div class="cell-sub">Со стороны студентов</div>
+    <div class="cell-text">
+      <ul>
+        <li>Студент формулирует понимание своей профессии и смежных специальностей</li>
+        <li>Посещаемость 70%+ на каждом интенсиве</li>
+        <li>Студент забирает артефакты и хочет показать их другим</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Со стороны заказчика</div>
+    <div class="cell-text">
+      <ul>
+        <li>Программа работает при 54 и при 200 студентах без изменения методологии</li>
+        <li>Снижение числа переводов на другие специализации после 1-го семестра</li>
+        <li>Программа передаётся новому преподавателю без потери качества</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Со стороны команды</div>
+    <div class="cell-text">
+      <ul>
+        <li>Концепция программы защищена и принята заказчиком</li>
+        <li>SJM и сценарий модуля готовы как опорные материалы для реализации</li>
+        <li>Методологическая рамка передаётся любому преподавателю без потери логики</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cell">
+    <div class="cell-head">Ключевые компоненты замера успеха (оценки)</div>
+    <div class="cell-sub">Формирующее оценивание (в процессе)</div>
+    <div class="cell-text">
+      <ul>
+        <li>Короткий опросник в конце каждого интенсива</li>
+        <li>Show & Tell — обратная связь от сверстников после каждой пробы</li>
+        <li>Скетчбук — содержательность рефлексии, не формальное заполнение</li>
+        <li>Беседа с тьютором — вовлечённость и динамика студента</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Итоговое оценивание</div>
+    <div class="cell-text">Финальная презентация: портфолио (7+ артефактов) + скетчбук + устная аргументация выбора профессии<br><br>Скетчбук — допуск к финалу</div>
+    <div class="cell-sub">Критерии</div>
+    <div class="cell-text">Завершённость артефактов · конкретность рефлексии · способность сформулировать понимание профессии · наличие следующего шага</div>
+  </div>
+</div>
+
+<div class="grid row-1">
+  <div class="cell">
+    <div class="cell-head" style="margin-bottom:0;padding-bottom:0;border-bottom:none">Инструменты и роли для реализации</div>
+  </div>
+</div>
+<div class="grid row-2">
+  <div class="cell" style="border-top:none">
+    <div class="cell-sub">Роли</div>
+    <div class="cell-text">Преподаватель · Профессионалы из индустрии — бриф и ритуал на каждом интенсиве · Тьюторы-второкурсники — поддержка малых групп (1 на 10–15 студентов)</div>
+    <div class="cell-sub">Инструменты</div>
+    <div class="cell-text">LMS/платформа — размещение материалов · Визуальные редакторы · Инструмент для опросов — рефлексия и обратная связь</div>
+  </div>
+  <div class="cell" style="border-top:none">
+    <div class="cell-sub">Материальные ресурсы</div>
+    <div class="cell-text">Скетчбук (выдаётся на онбординге) · Библиотека брифов по специализациям · Подручные расходники для проб · Пространство в формате студии/агентства</div>
+    <div class="cell-sub">Точки проверки итераций</div>
+    <div class="cell-text">Скетчбук заполнен содержательно · Артефакты забирают домой · Тьюторы справляются с нагрузкой · Студенты возвращаются на следующий интенсив</div>
+  </div>
+</div>
+
+</body>
+</html>

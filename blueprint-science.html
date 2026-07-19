@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Blueprint · Естествознание: Восприятие</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F4F0E8;--white:#FBF9F4;--ink:#24221E;--muted:#6b665d;
+  --faint:#b3ab9c;--forest:#1B3B6F;--sage:#B0803A;
+  --border:rgba(27,59,111,0.16);--sans:'Space Grotesk',system-ui,sans-serif;
+}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);padding:32px;max-width:960px;margin:0 auto}
+
+.doc-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:1.5px solid var(--ink);margin-bottom:0}
+.doc-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.doc-fullname{font-size:12px;color:var(--muted)}
+.doc-meta{font-size:12px;color:var(--muted);text-align:right;line-height:1.7}
+
+.grid{display:grid;border-left:0.5px solid var(--border);border-top:0.5px solid var(--border)}
+.row-2{grid-template-columns:1fr 1fr}
+.row-1{grid-template-columns:1fr}
+
+.cell{border-right:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:14px 16px}
+.cell-head{font-size:11px;font-weight:500;color:var(--ink);letter-spacing:0.03em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:0.5px solid var(--border)}
+.cell-sub{font-size:10.5px;color:var(--sage);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:5px;margin-top:10px}
+.cell-sub:first-of-type{margin-top:0}
+.cell-text{font-size:12.5px;color:var(--muted);line-height:1.65}
+.cell-text ul{padding-left:13px;margin-top:3px}
+.cell-text li{margin-bottom:3px;font-size:12.5px;color:var(--muted)}
+.cell-text b{color:var(--ink);font-weight:500}
+
+.doc-name,.doc-fullname,.doc-meta,.cell-head,.cell-sub{font-family:'Space Mono',monospace}
+.doc-name{color:var(--forest);font-weight:700;letter-spacing:0.02em}
+.cell-head{color:var(--forest);font-weight:700}
+.cell-sub{color:var(--sage);font-weight:700}
+.cell-text b{color:var(--forest)}
+.doc-top{border-bottom-color:var(--forest)}
+@media print{
+  body{padding:20px;background:white}
+  @page{margin:1.5cm;size:A4}
+}
+
+.row-2.equal-height{align-items:stretch}
+.row-2.equal-height .cell{display:flex;flex-direction:column}
+.cell-head{background:rgba(27,59,111,0.05);margin:-14px -16px 12px;padding:11px 16px;font-size:11.5px;letter-spacing:0.06em}
+</style>
+</head>
+<body>
+
+<div class="doc-top">
+  <div>
+    <div class="doc-name">Blueprint программы · Естествознание: Восприятие</div>
+    <div class="doc-fullname">Введение в естественные науки через анализ восприятия в креативных индустриях</div>
+  </div>
+  <div class="doc-meta">
+    72 академических часа · 36 недель · 1 учебный год<br>
+    1 занятие в неделю · 2 академических часа
+  </div>
+</div>
+
+<div class="grid row-2">
+  <div class="cell">
+    <div class="cell-head">Аудитория (персона)</div>
+    <div class="cell-sub">Профиль</div>
+    <div class="cell-text">Возраст 16–17 лет · Кино, дизайн, маркетинг, мода<br>~90% девушки · Низкий уровень по естественным наукам<br>Студенты с СДВГ, дислексией · Перегружены профильными дисциплинами</div>
+    <div class="cell-sub">Ключевая потребность</div>
+    <div class="cell-text">Понять применимость естественнонаучных знаний к креативной профессии. Курс должен показать прямую связь с будущей работой.</div>
+    <div class="cell-sub">Цель студента</div>
+    <div class="cell-text">Получить конкретный инструмент для профессионального роста — способность обосновывать креативные решения через научные данные о восприятии.</div>
+    <div class="cell-sub">Образовательный процесс</div>
+    <div class="cell-text">Практико-ориентированный, минимум теории, максимум hands-on. 80% работы в аудитории. Короткие активности (15–20 мин). Кейсы из креативных индустрий.</div>
+  </div>
+  <div class="cell">
+    <div class="cell-head">Стейкхолдеры и контекст</div>
+    <div class="cell-sub">Ключевые стейкхолдеры</div>
+    <div class="cell-text">
+      <ul>
+        <li>Эксперт — автор курса, единственный преподаватель</li>
+        <li>Академический директор</li>
+        <li>Студенты — 53 человека, разные специализации</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Цели Креативного техникума</div>
+    <div class="cell-text">
+      <ul>
+        <li>Естествознание как инструмент эрудиции и критического мышления</li>
+        <li>Повысить вовлечённость в непрофильный предмет</li>
+        <li>Интегрировать научный подход с креативным мышлением</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Ключевые ограничения</div>
+    <div class="cell-text">
+      <ul>
+        <li>Эксперт работает один, нет команды преподавателей</li>
+        <li>Студенты перегружены, не делают домашние задания</li>
+        <li>Естествознание — низкий приоритет для студентов</li>
+        <li>Первый год программы — нет старшекурсников для тьюторства</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="grid row-1">
+  <div class="cell">
+    <div class="cell-head">Подход к проектированию</div>
+    <div class="cell-sub">Проектирование от результата</div>
+    <div class="cell-text">Образовательные результаты (3 компетенции) → Критерии оценивания → Учебные активности. Конструктивная согласованность: каждая активность развивает конкретный ОР и оценивается по чётким критериям.</div>
+    <div class="cell-sub">Постепенное усложнение</div>
+    <div class="cell-text">Научный метод (6 шагов) вводится поэтапно: модули 2–3 — первые 4 шага · модули 4–5 — полный цикл · модуль 6 — самостоятельное применение. Готовые шаблоны и чек-листы поддерживают студентов с низкой базой.</div>
+  </div>
+</div>
+
+<div class="grid row-2">
+  <div class="cell">
+    <div class="cell-head">Образовательные результаты</div>
+    <div class="cell-sub">1. Научный метод как профессиональный инструмент</div>
+    <div class="cell-text">Студенты осваивают полный 6-шаговый цикл исследования и применяют его к задачам креативных индустрий.</div>
+    <div class="cell-sub">2. Анализ восприятия для эффективных продуктов</div>
+    <div class="cell-text">Студенты понимают, как сенсорные системы (зрение, слух, осязание, вкус, запах) влияют на восприятие продуктов.</div>
+    <div class="cell-sub">3. Доказательная аргументация</div>
+    <div class="cell-text">Студенты переходят от «мне нравится» к «я могу обосновать» — опираясь на законы восприятия и данные.</div>
+    <div class="cell-sub">4. Профессиональная уверенность</div>
+    <div class="cell-text">От субъективного мнения к объективной, доказательной профессиональной аргументации.</div>
+  </div>
+  <div class="cell">
+    <div class="cell-head">Основная модель обучения</div>
+    <div class="cell-sub">Опытно-ориентированное обучение (цикл Колба)</div>
+    <div class="cell-text">Студенты анализируют реальный продукт из своей индустрии (рекламу, сайт, упаковку) через научный метод — создавая «Научный паспорт креативного продукта». Каждый модуль — новый раздел паспорта.<br><br>Цикл: опыт (эксперименты) → рефлексия → теория (законы восприятия) → применение к своему продукту.<br><br>Итог: готовый паспорт + защита-питч 5 минут.</div>
+    <div class="cell-sub">Скаффолдинг</div>
+    <div class="cell-text">Готовые шаблоны, чек-листы, постепенное усложнение: 3 шага → 4 → 6.</div>
+  </div>
+</div>
+
+<div class="grid row-2">
+  <div class="cell">
+    <div class="cell-head">Критерии успеха программы</div>
+    <div class="cell-sub">Со стороны студентов</div>
+    <div class="cell-text">
+      <ul>
+        <li>80%+ завершают курс с оценкой «хорошо» и выше</li>
+        <li>70%+ оценивают курс как профессионально полезный</li>
+        <li>100% создают «Научный паспорт» для портфолио</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Со стороны техникума</div>
+    <div class="cell-text">
+      <ul>
+        <li>Программа реализована без критических сбоев</li>
+        <li>Нагрузка на преподавателя снижена — материалы готовы, не требуют еженедельной разработки</li>
+        <li>Программа масштабируема — передаётся любому преподавателю</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Со стороны команды</div>
+    <div class="cell-text">
+      <ul>
+        <li>Модуль 3 (Механорецепция) готов к пилоту, февраль–март 2026</li>
+        <li>Полная программа разработана к защите</li>
+        <li>Минимум 1 модуль протестирован на реальных студентах</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cell">
+    <div class="cell-head">Ключевые компоненты оценки</div>
+    <div class="cell-sub">Формирующее оценивание (в процессе)</div>
+    <div class="cell-text">
+      <ul>
+        <li>Разделы паспорта сдаются как допуск к следующему модулю</li>
+        <li>Самопроверка челленджей по чек-листам</li>
+        <li>Обратная связь преподавателя на промежуточные версии</li>
+      </ul>
+    </div>
+    <div class="cell-sub">Итоговое оценивание</div>
+    <div class="cell-text">Завершённый «Научный паспорт» + защита-питч 5 минут (+ 2–3 минуты вопросы)<br><br><b>40%</b> текущий контроль (разделы паспорта) · <b>60%</b> итоговая защита</div>
+    <div class="cell-sub">Критерии защиты</div>
+    <div class="cell-text">Ясность · Доказательность · Практичность · Профессиональный язык</div>
+    <div class="cell-sub">Этичность использования ИИ</div>
+    <div class="cell-text">Студент предоставляет промпты, объясняет решения и аргументирует выбор при защите, указывает где ИИ ошибся и что проверял вручную.</div>
+  </div>
+</div>
+
+<div class="grid row-1">
+  <div class="cell">
+    <div class="cell-head" style="margin-bottom:0;padding-bottom:0;border-bottom:none">Инструменты и роли для реализации</div>
+  </div>
+</div>
+<div class="grid row-2">
+  <div class="cell" style="border-top:none">
+    <div class="cell-sub">Роли</div>
+    <div class="cell-text">Преподаватель · Биолог-консультант — экспертиза по модулям</div>
+    <div class="cell-sub">Инструменты</div>
+    <div class="cell-text">LMS/платформа техникума · Визуальные редакторы · AI-ассистент (с критической проверкой) · Инструменты для опросов</div>
+  </div>
+  <div class="cell" style="border-top:none">
+    <div class="cell-sub">Материальные ресурсы</div>
+    <div class="cell-text">Проектор · Доска · Раздаточные материалы (шаблоны, чек-листы) · Минимальные расходники для экспериментов</div>
+    <div class="cell-sub">Точки проверки итераций</div>
+    <div class="cell-text">Управляемость для одного преподавателя · Вовлечённость студентов · Реалистичность временных рамок</div>
+  </div>
+</div>
+
+</body>
+</html>
