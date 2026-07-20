@@ -17,6 +17,8 @@
   body{background:#F4F0E8;font-family:'Space Grotesk',system-ui,sans-serif;color:#24221E;-webkit-font-smoothing:antialiased}
   a{color:#1B3B6F;text-decoration:none}
   a:hover{color:#B0803A}
+  .nav-links a{color:#1B3B6F;opacity:0.66;transition:opacity .2s,color .2s}
+  .nav-links a:hover{opacity:1;color:#B0803A}
   ::selection{background:rgba(176,128,58,0.22)}
   .chaos-word{position:absolute;will-change:transform;white-space:nowrap;user-select:none;pointer-events:none;color:#8f8879;line-height:1.25}
   .sys-row{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid rgba(27,59,111,0.16)}
@@ -25,12 +27,14 @@
   @media (max-width:760px){
     .hero-root{height:auto!important;min-height:0!important;padding-bottom:44px}
     .hero-chaos,.hero-seam,.hero-handle{display:none!important}
-    .hero-sys{position:static!important;width:100%!important;padding:104px 24px 0!important;box-sizing:border-box}
-    .nav-links{gap:14px!important;font-size:10px!important}
+    .hero-nav{position:static!important;flex-wrap:wrap;gap:10px 16px!important;background:rgba(244,240,232,0.9);border-bottom:1px solid rgba(27,59,111,0.12);padding:16px 24px!important}
+    .hero-nav .nav-links{flex-wrap:wrap;gap:14px 18px!important;font-size:11px!important}
+    .hero-sys{position:static!important;width:100%!important;padding:32px 24px 0!important;box-sizing:border-box}
     .grid-2{grid-template-columns:1fr!important}
     .grid-intro{grid-template-columns:1fr!important}
     .grid-3{grid-template-columns:1fr!important;gap:6px!important}
-    .flow-arrow{transform:rotate(90deg);margin:2px 0}
+    .grid-3 > div{border-left:none!important;padding-left:0!important}
+    .flow-conn{display:none!important}
     .value-row{grid-template-columns:1fr!important;gap:6px!important}
     .value-arrow{display:none!important}
     .about-grid{grid-template-columns:1fr!important}
@@ -44,9 +48,9 @@
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
 <!-- ═══════════ HERO ═══════════ -->
 <div ref="{{ setHero }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" class="hero-root" style="position:relative;width:100vw;height:100vh;min-height:640px;overflow:hidden;background:radial-gradient(120% 120% at 22% 40%,#F6F2EA 0%,#EFEAE0 60%,#E9E3D7 100%)">
-  <div style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:24px clamp(24px,4vw,56px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1B3B6F">
-    <span style="font-weight:700">Елена Рыжова</span>
-    <span class="nav-links" style="display:flex;gap:clamp(14px,2vw,26px);opacity:0.62"><a href="#cases">Кейсы</a><a href="#value">Подход</a><a href="#about">Обо мне</a><a href="#contact">Контакт</a></span>
+  <div class="hero-nav" style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px clamp(24px,4vw,56px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1B3B6F">
+    <span style="font-weight:700;white-space:nowrap">Елена Рыжова</span>
+    <span class="nav-links" style="display:flex;gap:clamp(14px,2vw,26px)"><a href="#cases">Кейсы</a><a href="#value">Подход</a><a href="#about">Обо мне</a><a href="#contact">Контакт</a></span>
   </div>
 
   <div ref="{{ setChaos }}" class="hero-chaos" style="position:absolute;top:0;left:0;bottom:0;width:52%;overflow:hidden;z-index:10">
@@ -94,8 +98,8 @@
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
 <section id="value" style="background:#F1ECE2;padding:clamp(56px,7vw,96px) clamp(24px,5vw,64px);position:relative">
   <div style="max-width:940px;margin:0 auto">
-    <span style="display:inline-block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A;border:1px solid rgba(176,128,58,0.5);border-radius:4px;padding:5px 11px">Запросы</span>
-    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,3vw,40px);letter-spacing:-0.015em;color:#1B3B6F;margin-top:16px">С чем ко мне приходят</h2>
+    <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A">// с чем ко мне приходят</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(28px,3.2vw,44px);letter-spacing:-0.02em;color:#1B3B6F;margin-top:14px">Запросы</h2>
     <p style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#8a857c;margin-top:8px">Что я слышу — и что делаю.</p>
     <div style="margin-top:clamp(28px,3.5vw,42px);display:flex;flex-direction:column">
       <sc-for list="{{ valuePairs }}" as="p" hint-placeholder-count="3">
@@ -121,7 +125,7 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
       <div>
         <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A">// избранные проекты</span>
-        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(28px,3vw,42px);letter-spacing:-0.02em;color:#1B3B6F;margin-top:14px">Из хаоса программы — в систему</h2>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(28px,3.2vw,44px);letter-spacing:-0.02em;color:#1B3B6F;margin-top:14px">Из хаоса программы — в систему</h2>
       </div>
       <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#a49e92"></span>
     </div>
@@ -155,60 +159,70 @@
         <button onClick="{{ closeCase }}" style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1B3B6F;background:none;border:none;cursor:pointer;padding:0;transition:color .2s" style-hover="color:#B0803A">← Все кейсы</button>
         <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;color:#B0803A">{{ ac.counter }}</span>
       </div>
-      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#8a857c;margin-bottom:14px">{{ ac.metaClient }} · {{ ac.metaProduct }}</div>
-      <h3 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(26px,3vw,38px);letter-spacing:-0.025em;text-transform:uppercase;color:#1B3B6F;line-height:1.06">{{ ac.client }}</h3>
-      <p style="font-family:'Space Grotesk',sans-serif;font-style:italic;font-size:clamp(15px,1.4vw,18px);color:#6b665d;margin-top:10px">{{ ac.subtitle }}</p>
+      <div style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#a49e92;margin-bottom:14px">{{ ac.metaClient }} · {{ ac.metaProduct }}</div>
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,2.8vw,36px);letter-spacing:-0.02em;text-transform:uppercase;color:#1B3B6F;line-height:1.06;text-decoration:none">{{ ac.client }}</h3>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(15px,1.35vw,18px);color:#4a463f;margin-top:12px;max-width:60ch;line-height:1.5">{{ ac.subtitle }}</p>
 
       <!-- БЫЛО → СТАЛО -->
-      <div class="grid-3" style="margin-top:clamp(28px,3.5vw,44px);display:grid;grid-template-columns:1fr 48px 1fr;gap:clamp(12px,2vw,24px);align-items:center;border-top:1px solid rgba(27,59,111,0.16);border-bottom:1px solid rgba(27,59,111,0.16);padding:clamp(20px,2.6vw,30px) 0">
-        <div>
-          <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#a49e92">было</span>
-          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(16px,1.5vw,20px);line-height:1.4;color:#8a8378;margin-top:8px;text-wrap:pretty">{{ ac.before }}</p>
+      <div class="grid-3" style="margin-top:clamp(28px,3.5vw,44px);display:grid;grid-template-columns:1fr 60px 1.15fr;gap:0;align-items:stretch">
+        <div style="padding:clamp(16px,2vw,24px) 0">
+          <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#a49e92">было</span>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:#8a8378;margin-top:10px;text-wrap:pretty">{{ ac.before }}</p>
         </div>
-        <div class="flow-arrow" style="text-align:center;font-family:'Space Mono',monospace;font-size:clamp(22px,3vw,34px);color:#B0803A">→</div>
-        <div>
-          <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#B0803A">стало</span>
-          <p style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(16px,1.5vw,20px);line-height:1.4;color:#1B3B6F;margin-top:8px;text-wrap:pretty">{{ ac.after }}</p>
+        <div class="flow-conn" style="position:relative;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,rgba(27,59,111,0.2),#B0803A)"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#B0803A;color:#F4F0E8;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:12px">→</div>
+        </div>
+        <div style="border-left:2px solid #B0803A;padding:clamp(16px,2vw,24px) 0 clamp(16px,2vw,24px) clamp(18px,2.4vw,28px)">
+          <span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">стало</span>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:#1B3B6F;margin-top:10px;text-wrap:pretty">{{ ac.after }}</p>
         </div>
       </div>
 
       <!-- 1 · ПРОБЛЕМА + ЗАДАЧА -->
-      <div class="grid-intro" style="margin-top:clamp(36px,4.5vw,60px);display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(20px,3vw,48px);align-items:start">
-        <div>
+      <div class="grid-3" style="margin-top:clamp(36px,4.5vw,60px);display:grid;grid-template-columns:1fr 60px 1.15fr;gap:0;align-items:start">
+        <div style="max-width:44ch">
           <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#a49076">// проблема</span>
-          <p style="font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:clamp(18px,1.9vw,25px);line-height:1.4;color:#3f3a31;margin-top:14px;text-wrap:pretty">{{ ac.problem }}</p>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:#3f3a31;margin-top:14px;text-wrap:pretty">{{ ac.problem }}</p>
         </div>
-        <div style="border-left:2px solid #B0803A;padding-left:clamp(16px,2vw,24px)">
+        <div></div>
+        <div style="border-left:2px solid #B0803A;padding-left:clamp(18px,2.4vw,28px);max-width:52ch">
           <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#B0803A">// задача</span>
-          <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.25vw,16px);line-height:1.6;color:#3a372f;margin-top:12px">{{ ac.task }}</p>
+          <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:#3a372f;margin-top:14px">{{ ac.task }}</p>
         </div>
       </div>
 
       <!-- 2 · ПОДХОД -->
-      <div style="margin-top:clamp(44px,5.5vw,76px)">
+      <div style="margin-top:clamp(48px,6vw,84px)">
         <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// подход · как я принимала решения</span>
-        <div class="grid-2" style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(27,59,111,0.12);border:1px solid rgba(27,59,111,0.12)">
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px">
           <sc-for list="{{ ac.processRows }}" as="s" hint-placeholder-count="6">
-            <div style="background:#F4F0E8;padding:clamp(20px,2.4vw,26px)">
-              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px">
-                <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#B0803A">{{ s.n }}</span>
-                <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#B0803A;text-align:right">{{ s.stat }}</span>
+            <div class="step-card" style="position:relative;display:grid;grid-template-columns:44px 1fr;gap:clamp(16px,2vw,24px);background:#FBF9F4;border:1px solid rgba(27,59,111,0.12);border-radius:10px;padding:clamp(18px,2.2vw,26px) clamp(20px,2.4vw,28px)">
+              <div style="display:flex;flex-direction:column;align-items:center">
+                <span style="width:34px;height:34px;flex-shrink:0;border-radius:50%;background:#1B3B6F;color:#F4F0E8;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:12px;font-weight:700">{{ s.n }}</span>
+                <span class="step-line" style="flex:1;width:1px;background:rgba(27,59,111,0.16);margin-top:8px"></span>
               </div>
-              <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.5vw,19px);font-weight:600;color:#1B3B6F;line-height:1.22">{{ s.t }}</h4>
-              <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.2vw,15px);line-height:1.6;color:#4a463f;margin-top:9px">{{ s.d }}</p>
+              <div>
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:8px">
+                  <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.45vw,19px);font-weight:600;color:#1B3B6F;line-height:1.2">{{ s.t }}</h4>
+                  <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#8a5a1e;background:rgba(176,128,58,0.14);border-radius:4px;padding:4px 9px;white-space:nowrap">{{ s.stat }}</span>
+                </div>
+                <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(13.5px,1.15vw,15px);line-height:1.6;color:#4a463f;max-width:72ch">{{ s.d }}</p>
+              </div>
             </div>
           </sc-for>
         </div>
       </div>
 
       <!-- 3 · РЕШЕНИЯ / РЕЗУЛЬТАТ -->
-      <div style="margin-top:clamp(44px,5.5vw,76px)">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// что стало возможно</span>
-        <div class="grid-2" style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,20px)">
+      <div style="margin-top:clamp(48px,6vw,84px)">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// {{ ac.resultsLabel }}</span>
+        <div class="grid-2" style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,20px)">
           <sc-for list="{{ ac.results }}" as="r" hint-placeholder-count="5">
-            <div style="background:#FBF9F4;border:1px solid rgba(27,59,111,0.12);border-radius:5px;padding:clamp(20px,2.4vw,28px)">
-              <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(17px,1.6vw,20px);font-weight:600;color:#1B3B6F;line-height:1.25">{{ r.t }}</h4>
-              <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(14px,1.3vw,16px);line-height:1.6;color:#4a463f;margin-top:10px">{{ r.d }}</p>
+            <div style="display:flex;flex-direction:column;background:#FBF9F4;border:1px solid rgba(27,59,111,0.12);border-radius:10px;padding:clamp(22px,2.6vw,30px)">
+              <span style="width:28px;height:3px;background:#B0803A;border-radius:2px;margin-bottom:16px"></span>
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.45vw,19px);font-weight:700;color:#1B3B6F;line-height:1.2;letter-spacing:-0.01em">{{ r.t }}</h4>
+              <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(13.5px,1.2vw,15px);line-height:1.6;color:#4a463f;margin-top:11px">{{ r.d }}</p>
             </div>
           </sc-for>
         </div>
@@ -216,21 +230,24 @@
 
       <!-- 4 · АРТЕФАКТЫ -->
       <sc-if value="{{ ac.hasArtifacts }}" hint-placeholder-val="{{ false }}">
-      <div style="margin-top:clamp(44px,5.5vw,76px)">
+      <div style="margin-top:clamp(48px,6vw,84px)">
         <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#B0803A">// артефакты — документы проекта</span>
-        <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:14px">
           <sc-for list="{{ ac.artifacts }}" as="a" hint-placeholder-count="1">
             <div>
-              <button onClick="{{ a.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;background:#FBF9F4;border:1px solid rgba(27,59,111,0.16);border-radius:5px;padding:16px 20px;cursor:pointer;text-align:left;transition:background .18s,border-color .18s" style-hover="background:rgba(176,128,58,0.08);border-color:#B0803A">
-                <span style="display:flex;align-items:center;gap:12px"><span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#B0803A">PDF</span><span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.5vw,19px);font-weight:600;color:#1B3B6F">{{ a.title }}</span></span>
-                <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.06em;color:#B0803A">{{ a.toggleLabel }}</span>
+              <button onClick="{{ a.toggle }}" style="display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;background:#FBF9F4;border:1px solid rgba(27,59,111,0.16);border-radius:10px;padding:18px 22px;cursor:pointer;text-align:left;transition:background .18s,border-color .18s,box-shadow .18s" style-hover="background:#fff;border-color:#B0803A;box-shadow:0 10px 30px rgba(27,59,111,0.1)">
+                <span style="display:flex;align-items:center;gap:16px">
+                  <span style="position:relative;width:38px;height:46px;flex-shrink:0;background:#fff;border:1px solid rgba(27,59,111,0.24);border-radius:3px;box-shadow:0 2px 6px rgba(27,59,111,0.08)"><span style="position:absolute;top:0;right:0;width:12px;height:12px;background:#EAE2D2;border-left:1px solid rgba(27,59,111,0.24);border-bottom:1px solid rgba(27,59,111,0.24);border-bottom-left-radius:3px"></span><span style="position:absolute;bottom:6px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:7px;font-weight:700;letter-spacing:0.06em;color:#B0803A">PDF</span></span>
+                  <span style="display:flex;flex-direction:column;gap:3px"><span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(16px,1.5vw,19px);font-weight:600;color:#1B3B6F">{{ a.title }}</span><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;color:#a49e92">интерактивный документ</span></span>
+                </span>
+                <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.06em;color:#B0803A;white-space:nowrap">{{ a.toggleLabel }}</span>
               </button>
               <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
                 <sc-if value="{{ a.isDoc }}" hint-placeholder-val="{{ false }}">
                   <div ref="{{ a.setDoc }}" style="margin-top:12px"></div>
                 </sc-if>
                 <sc-if value="{{ a.notDoc }}" hint-placeholder-val="{{ false }}">
-                  <div style="margin-top:12px;background:#12305C;padding:clamp(24px,3vw,44px);position:relative;overflow:hidden;border-radius:5px">
+                  <div style="margin-top:12px;background:#12305C;padding:clamp(24px,3vw,44px);position:relative;overflow:hidden;border-radius:8px">
                     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(221,230,242,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(221,230,242,0.06) 1px,transparent 1px);background-size:36px 36px"></div>
                     <div style="position:relative">{{ a.svg }}</div>
                   </div>
@@ -250,7 +267,7 @@
           <sc-for list="{{ ac.feedback }}" as="f" hint-placeholder-count="4">
             <div style="border-top:1px solid rgba(27,59,111,0.2);padding-top:16px;grid-column:{{ f.span }}">
               <span style="display:block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#B0803A;margin-bottom:12px">{{ f.topic }}</span>
-              <p style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(15px,1.3vw,18px);line-height:1.45;color:#2f2c26;text-wrap:pretty">«{{ f.quote }}»</p>
+              <p style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(15px,1.35vw,18px);line-height:1.5;color:#2f2c26;text-wrap:pretty">«{{ f.quote }}»</p>
             </div>
           </sc-for>
         </div>
@@ -288,7 +305,7 @@
     </div>
     <div>
       <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A">// обо мне</span>
-      <p style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(22px,2.4vw,34px);line-height:1.3;letter-spacing:-0.015em;color:#1B3B6F;margin-top:18px;max-width:24ch;text-wrap:balance">Хорошее обучение меняет то, как люди думают или работают. <span style="color:#9c948a">Большинство программ&nbsp;— нет.</span> <em style="display:block;margin-top:0.45em;font-style:italic;color:#B0803A">Именно этот разрыв я&nbsp;проектирую.</em></p>
+      <p style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(22px,2.4vw,34px);line-height:1.32;letter-spacing:-0.015em;color:#1B3B6F;margin-top:18px;max-width:26ch;text-wrap:balance">Хорошее обучение меняет то, как люди думают или работают. <span style="color:#9c948a">Большинство программ&nbsp;— нет.</span> <span style="display:block;margin-top:0.5em;font-weight:600;color:#B0803A">Именно этот разрыв я&nbsp;проектирую.</span></p>
       <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.2vw,17px);line-height:1.65;color:#4a463f;margin-top:24px">{{ about.lead }}</p>
       <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.5vw,40px)">
         <sc-for list="{{ about.poles }}" as="pole" hint-placeholder-count="2">
@@ -329,7 +346,7 @@
 <section id="contact" style="background:#12305C;color:#DDE6F2;position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(221,230,242,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(221,230,242,0.05) 1px,transparent 1px);background-size:40px 40px"></div>
   <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(24px,5vw,64px) clamp(40px,5vw,56px)">
-    <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.025em;color:#F4F0E8;max-width:16ch;text-wrap:balance">{{ contact.kicker }}</h2>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(30px,3.6vw,50px);line-height:1.1;letter-spacing:-0.02em;color:#F4F0E8;max-width:16ch;text-wrap:balance">{{ contact.kicker }}</h2>
     <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,18px);line-height:1.55;color:rgba(221,230,242,0.75);margin-top:16px;max-width:44ch">{{ contact.text }}</p>
     <div style="display:flex;gap:clamp(18px,3vw,32px);flex-wrap:wrap;margin-top:clamp(24px,3vw,36px)">
       <sc-for list="{{ contact.links }}" as="l" hint-placeholder-count="3">
@@ -357,7 +374,7 @@
     <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;color:#B0803A">{{ legalKicker }}</span>
   </div>
   <div style="max-width:760px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(24px,5vw,48px) clamp(64px,8vw,96px)">
-    <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,3.6vw,48px);letter-spacing:-0.025em;color:#1B3B6F">{{ legalTitle }}</h2>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(28px,3.2vw,44px);letter-spacing:-0.02em;color:#1B3B6F">{{ legalTitle }}</h2>
     <div style="margin-top:clamp(28px,4vw,44px);display:flex;flex-direction:column">
       <sc-for list="{{ legalBlocks }}" as="b" hint-placeholder-count="6">
         <div style="padding:18px 0;border-top:1px solid rgba(27,59,111,0.14)">
@@ -616,6 +633,7 @@ class Component extends DCLogic {
         passport: c.passport.map((p, j) => ({ k: p.k, v: p.v, span: j === c.passport.length - 1 && c.passport.length % 2 === 1 ? "1 / -1" : "auto" })),
         processRows: c.process.map((s, j) => ({ n: s.n, t: s.t, stat: s.stat, d: s.d, open: S.caseAcc === j, rotate: S.caseAcc === j ? "rotate(45deg)" : "rotate(0deg)", toggle: () => this.setState({ caseAcc: S.caseAcc === j ? -1 : j }) })),
         results: c.results,
+        resultsLabel: c.resultsLabel || "ключевые проектные решения",
         hasArtifacts: (c.artifacts || []).length > 0,
         artifacts: (c.artifacts || []).map((a, j) => { const key = S.caseIdx + "-" + j; const open = !!S.artOpen[key]; const isDoc = a.kind === "doc"; return { title: a.title, open, isDoc, notDoc: !isDoc, src: a.src || "", setDoc: this._refFor(a.src), toggleLabel: open ? "Скрыть ↑" : "Открыть ↓", svg: (open && !isDoc) ? this._artifactSvg(a.kind) : null, toggle: () => { const m = Object.assign({}, S.artOpen); m[key] = !open; this.setState({ artOpen: m }); } }; }),
         hasFeedback: (c.feedback || []).length > 0,
