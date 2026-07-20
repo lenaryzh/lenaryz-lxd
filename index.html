@@ -48,8 +48,7 @@
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
 <!-- ═══════════ HERO ═══════════ -->
 <div ref="{{ setHero }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" class="hero-root" style="position:relative;width:100vw;height:100vh;min-height:640px;overflow:hidden;background:radial-gradient(120% 120% at 22% 40%,#F6F2EA 0%,#EFEAE0 60%,#E9E3D7 100%)">
-  <div class="hero-nav" style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px clamp(24px,4vw,56px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1B3B6F">
-    <span style="font-weight:700;white-space:nowrap">Елена Рыжова</span>
+  <div class="hero-nav" style="position:absolute;top:0;left:0;right:0;z-index:30;display:flex;justify-content:flex-end;align-items:center;gap:16px;padding:24px clamp(24px,4vw,56px);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#1B3B6F">
     <span class="nav-links" style="display:flex;gap:clamp(14px,2vw,26px)"><a href="#cases">Кейсы</a><a href="#value">Подход</a><a href="#about">Обо мне</a><a href="#contact">Контакт</a></span>
   </div>
 
@@ -96,15 +95,15 @@
 
 <!-- ═══════════ VALUE ═══════════ -->
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
-<section id="value" style="background:#F1ECE2;padding:clamp(56px,7vw,96px) clamp(24px,5vw,64px);position:relative">
-  <div style="max-width:940px;margin:0 auto">
+<section id="value" style="background:#F1ECE2;padding:clamp(64px,8vw,104px) clamp(24px,5vw,64px);position:relative">
+  <div style="max-width:860px;margin:0 auto">
     <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#B0803A">// с чем ко мне приходят</span>
     <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(28px,3.2vw,44px);letter-spacing:-0.02em;color:#1B3B6F;margin-top:14px">Запросы</h2>
     <p style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#8a857c;margin-top:8px">Что я слышу — и что делаю.</p>
-    <div style="margin-top:clamp(28px,3.5vw,42px);display:flex;flex-direction:column">
+    <div style="margin-top:clamp(16px,2vw,24px);display:flex;flex-direction:column">
       <sc-for list="{{ valuePairs }}" as="p" hint-placeholder-count="3">
-        <div class="value-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:clamp(8px,2vw,20px);align-items:center;padding:clamp(16px,2vw,22px) 0;border-top:1px solid rgba(27,59,111,0.16)">
-          <span style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,20px);line-height:1.35;color:#6b665d">«{{ p.pain }}»</span>
+        <div class="value-row" style="display:grid;grid-template-columns:1fr 40px 1fr;gap:clamp(8px,2vw,20px);align-items:center;padding:clamp(13px,1.6vw,17px) 0;border-top:1px solid rgba(27,59,111,0.16)">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(15px,1.35vw,18px);line-height:1.35;color:#6b665d">«{{ p.pain }}»</span>
           <span class="value-arrow" style="text-align:center;color:#B0803A;font-family:'Space Mono',monospace;font-size:16px">→</span>
           <div>
             <span style="display:block;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B0803A;margin-bottom:5px">{{ p.tag }}</span>
@@ -119,7 +118,7 @@
 </sc-if>
 
 <!-- ═══════════ CASES ═══════════ -->
-<section id="cases" style="background:#F4F0E8;padding:clamp(48px,6vw,88px) clamp(24px,5vw,64px);position:relative">
+<section id="cases" style="background:#F4F0E8;padding:clamp(64px,8vw,104px) clamp(24px,5vw,64px);position:relative">
   <div style="max-width:1040px;margin:0 auto">
     <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
@@ -133,7 +132,7 @@
 
     <!-- LEVEL 1 · teasers -->
     <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
-    <div style="margin-top:clamp(32px,4vw,52px);border-top:1px solid rgba(27,59,111,0.18)">
+    <div style="margin-top:clamp(18px,2.2vw,28px);border-top:1px solid rgba(27,59,111,0.18)">
       <sc-for list="{{ caseRows }}" as="c" hint-placeholder-count="3">
         <div onClick="{{ c.open }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ caseLeave }}" style="display:grid;grid-template-columns:44px 1fr 1.15fr auto;gap:clamp(12px,2.4vw,32px);align-items:center;padding:clamp(18px,2.2vw,26px) 4px;border-bottom:1px solid rgba(27,59,111,0.18);cursor:pointer;transition:background .18s,padding-left .25s" style-hover="background:#EFEAE0;padding-left:14px">
           <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#B0803A">{{ c.num }}</span>
@@ -292,7 +291,7 @@
 
 <!-- ═══════════ ABOUT ═══════════ -->
 <sc-if value="{{ noCaseOpen }}" hint-placeholder-val="{{ true }}">
-<section id="about" style="background:#EFE7D8;padding:clamp(48px,6vw,88px) clamp(24px,5vw,64px);position:relative">
+<section id="about" style="background:#EFE7D8;padding:clamp(64px,8vw,104px) clamp(24px,5vw,64px);position:relative">
   <div class="about-grid" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:clamp(220px,26vw,340px) 1fr;gap:clamp(36px,5vw,80px);align-items:start">
     <div class="about-photo" style="position:sticky;top:32px">
       <div style="width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:6px">
