@@ -632,7 +632,7 @@ class Component extends DCLogic {
         passport: c.passport.map((p, j) => ({ k: p.k, v: p.v, span: j === c.passport.length - 1 && c.passport.length % 2 === 1 ? "1 / -1" : "auto" })),
         processRows: c.process.map((s, j) => ({ n: s.n, t: s.t, stat: s.stat, d: s.d, open: S.caseAcc === j, rotate: S.caseAcc === j ? "rotate(45deg)" : "rotate(0deg)", toggle: () => this.setState({ caseAcc: S.caseAcc === j ? -1 : j }) })),
         results: c.results,
-        resultsLabel: c.resultsLabel || "ключевые проектные решения",
+        resultsLabel: c.resultsLabel || "что получил заказчик",
         hasArtifacts: (c.artifacts || []).length > 0,
         artifacts: (c.artifacts || []).map((a, j) => { const key = S.caseIdx + "-" + j; const open = !!S.artOpen[key]; const isDoc = a.kind === "doc"; return { title: a.title, open, isDoc, notDoc: !isDoc, src: a.src || "", setDoc: this._refFor(a.src), toggleLabel: open ? "Скрыть ↑" : "Открыть ↓", svg: (open && !isDoc) ? this._artifactSvg(a.kind) : null, toggle: () => { const m = Object.assign({}, S.artOpen); m[key] = !open; this.setState({ artOpen: m }); } }; }),
         hasFeedback: (c.feedback || []).length > 0,
